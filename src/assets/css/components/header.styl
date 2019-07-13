@@ -1,10 +1,12 @@
 .header-full
-    position: fixed
+    position: absolute
     left: 0
     right: 0
     z-index:9
     transition: all .3s ease-in-out
     max-width 100%
+    border-bottom: 1px solid #ffffff38
+
     @media(max-width: 992px)
         top: 0px
         background: #fff
@@ -22,11 +24,11 @@
                 max-width: 110px
 
 .logo_img
-    transition: all .3s ease-in-out
-    img
-        width: 164px
-        height: 41px
-        transition: all .3s ease-in-out
+    position: absolute
+    left: 50%
+    transform: translateX(-50%)
+    top: 0
+
 .icons__hover
     &:hover
         svg  
@@ -47,27 +49,37 @@
             align-items: center
             margin: 15px 0
             a
-                color: #323232
+                color: #fff
                 text-transform: uppercase
-                font-size: 13px
+                font-size: 14px
                 font-weight: 400
-                transition: all 150ms ease-in-out
-                text-shadow: 0 0
+                transition: all 150ms ease-in-out 
+                letter-spacing: 0.2px
+                text-shadow 0 0  
+                
 
                 &:focus
                     outline: none
                     text-decoration: none
 
                 &:hover
-                    text-decoration: underline
-            &:first-child
-                &:before
-                    display: none
-            &:last-child
-                @media(min-width:993px)
-                    border: 1px solid #7F7F7F
-                    padding: 5px 12px
-                    border-radius: 4px
+                    text-decoration: none
+                    color #badab5
+ 
+
+html
+    margin 0!important 
+    
+#menu-menu-1
+    max-width 350px
+
+#menu-menu2
+    max-width 350px
+
+.social-menu.second nav.nav_menu 
+    display: flex
+    justify-content: flex-end
+
 
 .menu-item
     position: relative
@@ -109,8 +121,8 @@
             font-size: 0
 
 .menu-header
-    max-width: 1170px
-    padding: 32px 15px
+    max-width: 1570px
+    padding: 20px 15px
     margin: 0 auto
     width: 100%
     transition: all .3s ease-in-out;
@@ -584,11 +596,7 @@ header#masthead {
         transform: scale(1.332)
         paddgin-top: 65px
 
-ul#menu-menu-1 li a 
-    color: #323232
-    font-size: 12px
-    line-height: 16px
-    font-weight: 400
+ 
 
 .page-template-contato
     .header-full

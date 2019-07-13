@@ -38,6 +38,14 @@
         slide_bar.css({"left": "-"+ slidebar_width + "px"}); //change to "right" for right positioned menu
         overlay.css({"opacity":"0", "width":"0"});
     });
+
+    $('.depoimentos__list').slick({
+        dots: true,
+        infinite: false,
+        speed: 300,
+        slidesToShow: 3,  
+        arrows: false
+    });
     
     
 </script>

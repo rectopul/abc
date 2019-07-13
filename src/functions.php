@@ -362,3 +362,58 @@ function create_post_type_fullbanner() {
     );
 }
  
+add_action( 'init', 'create_post_type_funciona' );
+function create_post_type_funciona() {
+    register_post_type( 'funciona',
+        array(
+            'labels' => array(
+                'name' => __( 'Como funciona' ),
+                'singular_name' => __( 'Como funciona' )
+            ),
+            'public' => true,
+			'supports'  => array( 'title', 'thumbnail', 'editor')
+        )
+    );
+}
+
+add_action( 'init', 'create_post_type_sobre' );
+function create_post_type_sobre() {
+    register_post_type( 'sobre',
+        array(
+            'labels' => array(
+                'name' => __( 'Sobre' ),
+                'singular_name' => __( 'Sobre' )
+            ),
+            'public' => true,
+			'supports'  => array( 'title', 'thumbnail', 'editor')
+        )
+    );
+}
+
+add_action( 'init', 'create_post_type_depoimentos' );
+function create_post_type_depoimentos() {
+    register_post_type( 'depoimentos',
+        array(
+            'labels' => array(
+                'name' => __( 'Depoimentos' ),
+                'singular_name' => __( 'Depoimentos' )
+            ),
+            'public' => true,
+			'supports'  => array( 'title', 'thumbnail', 'editor')
+        )
+    );
+}
+
+add_action( 'init', 'create_post_type_servicos' );
+function create_post_type_servicos() {
+    register_post_type( 'servicos',
+        array(
+            'labels' => array(
+                'name' => __( 'Serviços' ),
+                'singular_name' => __( 'Serviços' )
+            ),
+            'public' => true,
+			'supports'  => array( 'title', 'thumbnail', 'editor')
+        )
+    );
+}

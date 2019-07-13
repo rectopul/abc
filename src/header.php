@@ -37,9 +37,12 @@
         <div class="menu-header">
             <div class="container">
                 <div class="menu__topo">
-                    <a class="logo_img" href="<?php echo get_home_url(); ?>"><img src="<?php bloginfo('template_directory'); ?>/img/logo-ac.png"></a>
                     <div class="social-menu">
                         <?php wp_nav_menu(array('menu' => 'menu', 'container' => 'nav', 'container_class' => 'nav_menu', 'menu_class' => 'menu')); ?>
+                    </div>
+                    <a class="logo_img" href="<?php echo get_home_url(); ?>"><img src="<?php bloginfo('template_directory'); ?>/img/logo.jpg"></a>
+                    <div class="social-menu second">
+                        <?php wp_nav_menu(array('menu' => 'menu2', 'container' => 'nav', 'container_class' => 'nav_menu', 'menu_class' => 'menu')); ?>
                     </div>
                 </div>
                 <div class="menu-resp">
@@ -52,7 +55,7 @@
                                 <path fill="#7f7f7f" style="fill: var(--color1, #7f7f7f)" d="M29.283 25.283c1.509 0 2.717 1.132 2.717 2.642s-1.208 2.717-2.717 2.717h-26.642c-1.509 0-2.642-1.208-2.642-2.717s1.132-2.642 2.642-2.642h26.642z"></path>
                             </svg>
                         </a>
-                        <a class="logo_img" href="<?php echo get_home_url(); ?>"><img src="<?php bloginfo('template_directory'); ?>/img/logo-ac.png"></a>
+                        <a class="logo_img" href="<?php echo get_home_url(); ?>"><img src="<?php bloginfo('template_directory'); ?>/img/logo.jpg"></a>
                     </div>
                     <div class="side-menu-overlay" style="width: 0px; opacity: 0;"></div>
                     <div class="side-menu-wrapper">
