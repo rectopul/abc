@@ -1,0 +1,220 @@
+
+html, body
+    margin: 0
+    padding: 0
+    display block
+
+html
+    font-size: 100%
+
+body
+    font: normal 400 config.font.size[0] unquote(config.font.family[0])
+    color: config.color[0]
+    display: block
+    outline: none
+
+    -webkit-font-smoothing: antialiased
+    -moz-osx-font-smoothing: grayscale
+
+    &.admin-bar
+        .wrapper
+            top 46px
+            height: calc(100% - 46px);
+
+            @media(min-width: 782px)
+                top 32px
+                height: calc(100% - 32px);
+
+$fixed-body
+    max-height 100vh
+    overflow hidden
+
+
+
+.is-menu-break
+    @extends $fixed-body
+
+#wpadminbar
+    transition: all .3s ease
+    max-height 70px
+    position fixed
+// [class*=-container]
+//     width: calc(100vw - 40px)
+//     max-width: 1040px
+//     margin: 0 auto
+
+.wrapper
+    position relative
+
+::-moz-selection
+    background-color: #FFA525
+    color: white
+
+::selection
+    background-color: #FFA525
+    color: white
+
+[role=banner]
+    white-space: nowrap
+    overflow: hidden
+    display: flex
+
+    a, img
+        display block
+
+
+    > div
+        display: inline-block
+        width: 100%
+        overflow: hidden
+        flex: 0 0 100%
+
+        img
+            max-width: 100%
+
+iframe
+    max-width: 100%
+
+#sprite-svg
+    display none
+
+.text
+    h3, h4
+        font-weight 700
+        text-transform uppercase
+        line-height 1
+
+    h3
+        font-size 24px
+        padding 20px 0
+
+    h4
+        font-size 16px
+        padding 15px 0
+
+    p
+        font-size 15px
+        line-height 25px
+        padding 10px 0
+
+.box
+    h3
+        font-size 25px
+
+.row-desc
+    margin 50px 0
+
+    .text
+        margin 0 auto 50px
+
+    figure
+        min-height 90px
+
+figure
+    max-width: 100%
+
+.alignleft
+    float: left
+    margin-right: 10px
+
+.text-right
+    text-align right
+
+.text-center
+    text-align center
+
+.title
+    font-size 24px
+    font-weight 700
+    text-transform uppercase
+    line-height 1
+    padding 24px 0
+
+
+
+
+.icon-facebook
+    fill: #3b5998
+
+input
+    height 40px
+    padding: 0 15px
+    &[type=text], &[type=email], &[type=password]
+        font-style italic
+        color #8a8a8a
+        font-size 14px
+
+        &:focus
+            +placeholder()
+                color: transparent
+
+pre
+    max-width: 100%
+    overflow: hidden
+
+input, textarea
+    width 100%
+
+div.wpcf7-response-output
+    font-size 11px
+    padding 10px
+    margin 10px 0
+
+form
+    display block
+
+div.wpcf7 .ajax-loader
+    display none
+
+.entry-content
+    font-size 14px
+
+    h1
+        font-size 22px
+        font-weight 700
+        text-transform uppercase
+        margin 20px 0
+
+
+    p
+        margin 15px 0
+
+.subtitle
+    display: inline-block
+
+    span
+        display: block
+        text-align: right
+        font-size: 14px
+        font-weight: 400
+        padding-right: 15px
+        text-transform: none
+
+
+.share
+    display: flex
+    flex-wrap: wrap
+    justify-content center
+
+    a
+        background: config.color[1]
+        color: #ffffff
+        line-height: 1
+        padding: 10px 20px
+        text-transform: uppercase
+        margin: 2px
+        font-size: 12px
+
+        &:hover
+            text-decoration: none
+            background: darken(config.color[1], 20%)
+
+aside
+    text-align: center
+
+
+@media (min-width: 768px)
+    .sm-text-right
+        text-align right
+
+ 
