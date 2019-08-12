@@ -43,12 +43,14 @@ $fixed-body
     margin: 0 auto
 
 ::-moz-selection
-    background-color: #FFA525
+    background-color: #badab5
     color: white
 
 ::selection
-    background-color: #FFA525
+    background-color: #badab5
     color: white
+
+    
 
 [role=banner]
     white-space: nowrap
@@ -235,6 +237,10 @@ aside
         font-size 60px
         color: #424242
 
+        @media(max-width: 991px)
+            font-size 40px
+            margin-bottom: 20px
+
     ul.funciona__list
         display: flex
         justify-content: space-between
@@ -242,10 +248,19 @@ aside
         align-items: center
         margin-top: 80px
 
+        @media(max-width: 991px)
+            justify-content center
+
         li
             text-align center
             flex: 0 0 20%
             margin-bottom: 60px
+
+            @media(max-width: 991px)
+                flex  0 0 50%
+
+            @media(max-width: 425px)
+                flex  0 0 100%
 
             .funciona__list-image
                 img
@@ -280,18 +295,28 @@ aside
         display block
         margin-bottom: 80px
 
+        @media(max-width: 991px)
+            font-size 40px
+            margin-bottom: 20px
+
     p
         font-size 16px
         color: #424242
 
     &__left
         max-width 42%
+
+        @media(max-width: 991px)
+            max-width 100%
         
         p
             line-height 28px
 
     &__right
         max-width 50%
+        @media(max-width: 991px)
+            max-width 100%
+            margin-top 20px
 
         ul
             display flex
@@ -303,6 +328,9 @@ aside
                 flex 0 0 50%
                 text-align center
                 margin-bottom 50px
+
+                @media(max-width: 425px)
+                    flex 0 0 100% 
 
                 .sobre__list-image
                     margin-bottom 20px
@@ -430,13 +458,21 @@ aside
         display block
         margin-bottom: 60px
 
+        @media(max-width: 991px)
+            font-size 40px
+            margin-bottom: 20px
+
     &__list
-        &-item
-            margin-bottom 50px
+        &-item 
             position relative
             min-height: 715px
             background-repeat: no-repeat!important
             background-position center!important 
+
+            @media(max-width 991px) 
+                min-height 300px
+                margin-bottom: 30px
+                padding: 15px 0
 
         &-info
             position relative
@@ -444,6 +480,8 @@ aside
             background #badab5
             padding : 80px 70px
 
+            @media(max-width 991px)
+                padding  15px
 
 
         &-title
@@ -452,11 +490,18 @@ aside
             line-height: 54px
             margin-bottom: 60px
 
+            @media(max-width 991px)
+                font-size 30px
+                margin-bottom: 10px
+
         &-descricao
             font-size :16px
             color: #424242
             line-height : 28px
             margin-bottom: 60px
+
+            @media(max-width 991px) 
+                margin-bottom: 10px
 
         &-link
             a
@@ -464,6 +509,9 @@ aside
                 color: #424242  
                 text-decoration : underline 
                 font-style : italic
+
+                 @media(max-width 991px) 
+                    font-size 20px
 
                 &:after
                     content: ''
@@ -476,3 +524,24 @@ aside
                     display block
                     width: 50px
                     height: 50px
+
+                    @media(max-width 991px) 
+                        display none
+
+.contrate 
+    background: #badab5
+    padding: 70px 0
+    text-align: center
+
+    a
+        font-size: 70px
+        text-transform: uppercase
+        color: #fff
+        text-decoration: underline
+        font-weight: 200
+
+        @media(max-width: 991px)
+            font-size 40px 
+
+.fullbanner 
+    overflow: hidden

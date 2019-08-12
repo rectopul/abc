@@ -1,17 +1,63 @@
 .footer
-    .footer__container
-        max-width: 1170px 
-        width: 100%
-        padding: 0 15px
-        margin: 0 auto
-        padding-top: 28px
-        padding-bottom: 71px
-    .footer__copyright
-        display: block
-        text-align: center
-        font-size: 12px
-        color: #AFAFAF
-        margin-bottom: 17px
-    .footer__auaha
-        display: block
-        margin: 0 auto
+    display flex
+    flex-wrap wrap
+    justify-content: center
+
+    &__left
+        background #424242
+        width 70%
+        display: flex
+        align-items: center
+        justify-content: space-between
+        padding:  5%
+
+        @media(max-width 1200px)
+            padding  15px
+            width 100%
+            flex-wrap wrap
+            justify-content: center
+
+        ul
+            @media(max-width 1200px)
+                text-align center
+                width 100%
+            li
+                margin: 10px 0
+                
+                span
+                    display block
+
+                strong
+                    display block
+                    margin-bottom: 5px
+
+                a
+                    font-size 16px
+                    color: #fff
+                    text-decoration: none
+                    
+                    display: block
+
+                    &:hover
+                        color #badab5
+    &__right
+        width 30%
+        background #000000
+        display: flex
+        align-items: center
+        padding: 100px 50px
+
+        @media(max-width 1200px)
+            width 100%
+            padding 20px 15px
+
+        ul
+            display: flex
+            align-items: center
+
+            @media(max-width 1200px)
+                justify-content center
+                width: 100%
+
+            li
+                margin 0 10px

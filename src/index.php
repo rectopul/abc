@@ -167,4 +167,8 @@ get_header(); ?>
     <ul>
 
 </section>
+
+<section class="contrate">
+    <a href="#">Contrate agora</a>
+</section>
 <?php get_footer(); ?>

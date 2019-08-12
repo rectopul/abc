@@ -13,8 +13,39 @@
 
 	</div>
 	<footer class="footer">
-        <div class="footer__container">
- 
+        <div class="footer__left">
+            <a href="/"><img src="<?php bloginfo('template_directory'); ?>/img/logof.png"></a>
+            <ul>
+                <li><a href="/">Sobre nós</a></li>
+                <li><a href="/">Como funciona</a></li>
+                <li><a href="/">Serviços</a></li>
+                <li><a href="/">Profissionais</a></li>
+                <li><a href="/">Sou profissional</a></li>
+                <li><a href="/">Termos & condições</a></li>
+                <li><a href="/">Fale conosco</a></li>
+            </ul>
+             
+            <ul>
+                <li>
+                    <strong>Endereço:</strong>
+                    <span>Rua hdtdgsdneif, 543, conjunto 543, Pinheiros, São Paulo - SP</span>
+                </li>
+                <li>
+                    <strong>Contato:</strong>
+                    <span>Rafaella@mynest.com.br</span>
+                    <span>Marcelle@mynest.com.br</span>
+                </li>
+            </ul>
+        </div>
+        <div class="footer__right">
+            <ul>
+                <li><a href="/"><img src="<?php bloginfo('template_directory'); ?>/img/face.png"></a></li>
+                <li><a href="/"><img src="<?php bloginfo('template_directory'); ?>/img/tw.png"></a></li>
+                <li><a href="/"><img src="<?php bloginfo('template_directory'); ?>/img/google.png"></a></li>
+                <li><a href="/"><img src="<?php bloginfo('template_directory'); ?>/img/in.png"></a></li>
+            </ul>
+
+            
         </div>
 	</footer>
 </div>
@@ -44,7 +75,19 @@
         infinite: false,
         speed: 300,
         slidesToShow: 3,  
-        arrows: false
+        arrows: false,
+        responsive: [
+    {
+      breakpoint: 991,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        infinite: true,
+        dots: true
+      }
+    }
+
+  ]
     });
     
     
