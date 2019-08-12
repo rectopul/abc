@@ -28,6 +28,7 @@
     transform: translateX(-50%)
     top: 0
     width: 18%
+    text-align center
 
     @media(max-width: 991px)
         width 28%
@@ -604,14 +605,7 @@ header#masthead {
 
  
 
-.page-template-contato
-    .header-full
-        background: url(../../img/bgcontato.png)
-        background-repeat: no-repeat
-        min-height: 810px
-
-    .bounce
-        display: none
+ 
         
 body.moving
     .header-full
@@ -622,3 +616,60 @@ body.moving
         padding: 12px 15px
         @media(max-width: 992px)
             padding-top: 25px
+
+.page-template-contratar
+    .topheader
+        background: #addbb6
+        min-height: 700px
+        position relative
+
+        h2
+            font-size 53px
+            color: #fff
+            font-weight: 700
+            width: 100%
+            position: absolute
+            transform: translateY(-50%)
+            top: 50%
+            text-align: center
+
+            @media(max-width 991px)
+                font-size 40px
+                transform: translateY(-40%)
+                top: 40%
+
+        ul
+
+            transform: translateY(-60%)
+            top: 60%  
+            position: absolute
+            width 100%
+            display: flex
+            justify-content: center
+            align-items: center
+            flex-wrap: wrap
+            margin-top 20px
+
+            @media(max-width 425px)
+                transform: translateY(-70%)
+                top:70%  
+
+               
+            li
+                width: 20%
+                height: 60px
+                font-size: 44px
+                color: #666666
+                border: 1px solid #fff
+                border-radius: 30px
+                display: flex
+                align-items: center
+                justify-content: center
+                margin: 10px
+                cursor pointer
+
+                @media(max-width 991px)
+                    width 100%
+
+            li.active__aba
+                background #fff

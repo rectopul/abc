@@ -90,6 +90,21 @@
   ]
     });
     
+
+    $('.list__service li').on('click', function(){
+        $('.list__service li').removeClass('active__aba');
+        $(this).addClass('active__aba');
+
+        var abaselect = $(this).attr('data-layer');
+        
+        $('.list__post').each(function(){
+            var el = $(this).find('[data-layer="' + abaselect + '"]');
+            $('.list__post > div').hide();
+            el.show();
+            
+        });
+    });
+
     
 </script>
 

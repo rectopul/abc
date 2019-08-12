@@ -417,3 +417,31 @@ function create_post_type_servicos() {
         )
     );
 }
+
+add_action( 'init', 'create_post_type_baba' );
+function create_post_type_baba() {
+    register_post_type( 'baba',
+        array(
+            'labels' => array(
+                'name' => __( 'Babás' ),
+                'singular_name' => __( 'Babás' )
+            ),
+            'public' => true,
+			'supports'  => array( 'title', 'thumbnail')
+        )
+    );
+}
+
+add_action( 'init', 'create_post_type_domestica' );
+function create_post_type_domestica() {
+    register_post_type( 'domestica',
+        array(
+            'labels' => array(
+                'name' => __( 'Domésticas' ),
+                'singular_name' => __( 'Domésticas' )
+            ),
+            'public' => true,
+			'supports'  => array( 'title', 'thumbnail')
+        )
+    );
+}

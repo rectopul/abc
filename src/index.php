@@ -171,4 +171,6 @@ get_header(); ?>
 <section class="contrate">
     <a href="#">Contrate agora</a>
 </section>
+
+ 
 <?php get_footer(); ?>
