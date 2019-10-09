@@ -546,20 +546,54 @@ aside
 .fullbanner 
     overflow: hidden
 
+.prices__container
+    display: none
+    &.active
+        display: block
 
-.list__profissionais
+.list__price
     display: flex
-    flex-wrap: wrap
-    align-items: center
-    justify-content: space-between
+    flex-flow: row wrap
+    justify-content: flex-start
+    align-items: flex-start
+    max-width: 1570px
+    margin: 0 auto
+    padding: 0 15px
+    & > li 
+        flex 0 0 350px
+        height 66px
+        border-radius: 33px
+        border: 1px solid #626262
+        text-align: center
+        line-height: 66px
+        margin: 15px 15px
+        color: #666
+        font-size: 30px
+        font-weight: 400
+        cursor pointer
+        &.active,
+        &:hover
+            font-weight: 700
+            background: #badab5
+.list__post
     max-width: 1570px
     padding: 0 15px
     margin: 0 auto
     width: 100%;
-
+.list__profissionais
+    display: flex
+    flex-wrap: wrap
+    align-items: center
+    justify-content: flex-start
+    max-width: 1570px
+    padding: 0 15px
+    margin: 0 auto
+    width: 100%;
+    margin-left: -15px;
+    margin-right: -15px;
     .item__list
-        flex: 0 0 32%
-        margin-bottom 30px
+        flex: 0 0 calc(33.333333333% - 30px)
+        margin: 0 15px 30px 15px
         border: 1px solid #f2f2f2
 
         @media(max-width: 767px)

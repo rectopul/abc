@@ -9092,8 +9092,7 @@ msgid "Super admin privileges cannot be removed because this user has the networ
 msgstr "Os privilégios de Super Admin não podem ser removidos porque este usuário possui o e-mail de administração da rede."
 
 #: wp-admin/includes/class-wp-themes-list-table.php:111
-msgid "You only have one theme installed right now. Live a little! You can choose from over 1,000 free themes in the WordPress Theme Directory at any time: just click on the <a href=\"%s\">Install Themes</a> tab above."
-msgstr "Você só tem um tema instalado no momento. Aproveite mais! Você pode escolher entre mais de 1000 temas gratuitos no diretório de temas do WordPress a qualquer hora: apenas clique na aba <a href=\"%s\">Instalar temas</a> acima."
+msgid "You only have one theme installed right now. Live a little! You can choose from over 1,000 free themes in the WordPress Theme Directory at any tim. Aproveite mais! Você pode escolher entre mais de 1000 temas gratuitos no diretório de temas do WordPress a qualquer hora: apenas clique na aba <a href=\"%s\">Instalar temas</a> acima."
 
 #: wp-admin/maint/repair.php:160
 msgid "One or more database tables are unavailable. To allow WordPress to attempt to repair these tables, press the &#8220;Repair Database&#8221; button. Repairing can take a while, so please be patient."
@@ -9604,7 +9603,8 @@ msgstr "Você pode personalizar a apresentação desta tela usando as Opções d
 
 #: wp-admin/plugins.php:453
 msgid "Most of the time, plugins play nicely with the core of WordPress and with other plugins. Sometimes, though, a plugin&#8217;s code will get in the way of another plugin, causing compatibility issues. If your site starts doing strange things, this may be the problem. Try deactivating all your plugins and re-activating them in various combinations until you isolate which one(s) caused the issue."
-msgstr "Na maior parte das vezes, os plugins funcionam bem com o core do WordPress e outros plugins. Porém, algumas vezes o código de um plugin pode atrapalhar outro plugin provocando problemas de compatibilidade. Se o seu site começar a fazer coisas estranhas, isto pode ser o problema. Tente desativar todos os seus plugins e reativá-los em várias combinações até isolar qual ou quais provocaram o problema."
+msgstr "Na maior parte das vezes, os plugins funcionam bem com o core do WordPress e outros plugins. Porém, algumas vezes o código de um plugin pode atrapalhar outro plugin provocando problemas de compatibilidade. Se o seu site começar a fazer coisas estranhas, isto pode ser o problema. Tente desativar todos os seus plugins e reativá-los em várias com, or you can have it scroll with your site."
+msgstr "Para usar uma imagem de fundo, apenas envie o arquivo ou escolhabinações até isolar qual ou quais provocaram o problema."
 
 #: wp-admin/theme-editor.php:38
 msgid "After typing in your edits, click Update File."

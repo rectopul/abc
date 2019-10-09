@@ -10,6 +10,19 @@
  define('WP_SITEURL', 'http://' . $_SERVER['HTTP_HOST'] );
  define('WP_HOME', 'http://' . $_SERVER['HTTP_HOST'] );
 
+ add_filter('wp_calculate_image_sizes', 'lc_content_archive_thumbnail_image_sizes', 10, 5);
+/**
+ * Change the default "sizes" attribute created by WordPress
+ * for the content archive thumbnails
+ */
+function lc_content_archive_thumbnail_image_sizes($sizes, $size, $image_src, $image_meta, $attachment_id)
+{
+    if (is_archive() && is_main_query() || is_home()) {
+        $sizes = '(max-width: 320px) 280px, (max-width: 480px) 440px';
+    }
+    return $sizes;
+}
+
 if ( ! function_exists( 'auaha_setup' ) ) :
 /**
  * Sets up theme defaults and registers support for various WordPress features.
@@ -36,14 +49,15 @@ function auaha_setup() {
 	 * hard-coded <title> tag in the document head, and expect WordPress to
 	 * provide it for us.
 	 */
-	add_theme_support( 'title-tag' );
+    add_theme_support( 'title-tag' );
+    add_theme_support('post-thumbnails');
 
 	/*
 	 * Enable support for Post Thumbnails on posts and pages.
 	 *
 	 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 	 */
-	add_theme_support( 'post-thumbnails' );
+    add_image_size( 'profile', 480, 350, true ); 
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
@@ -122,7 +136,7 @@ add_action( 'widgets_init', 'auaha_widgets_init' );
 function auaha_scripts() {
 	wp_enqueue_style( 'auaha-style', get_stylesheet_uri() );
 	//
-	// wp_enqueue_script( 'auaha-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
+	wp_enqueue_script( 'scripts-theme', get_template_directory_uri() . '/js/app.js', array('jquery'), '0.0.1', true );
 	// //
 	// // wp_enqueue_script( 'auaha-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
 

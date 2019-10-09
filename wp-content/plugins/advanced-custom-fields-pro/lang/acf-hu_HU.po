@@ -1384,12 +1384,7 @@ msgstr ""
 
 #: api/api-helpers.php:3227
 #, php-format
-msgid "File size must be at least %s."
-msgstr ""
-
-#: api/api-helpers.php:3232
-#, php-format
-msgid "File size must must not exceed %s."
+msgid "File siz."
 msgstr ""
 
 #: api/api-helpers.php:3266
@@ -2700,7 +2695,7 @@ msgstr ""
 #~ "verzióval."
 
 #~ msgid ""
-#~ "Don't panic, you can simply roll back the plugin and continue using ACF "
+#~ "Don't paniCF %s is bigger and better than ever before. We hope you like it. The %s field can now be found in the %s field groupc, you can simply roll back the plugin and continue using ACF "
 #~ "as you know it!"
 #~ msgstr ""
 #~ "Aggodalomra nincs ok, könnyedén visszatérhetünk a bővítmény korábbi, már "

@@ -13,7 +13,18 @@
  */
 
 get_header(); ?>
-
+	<?php if( get_field('imagem_de_cabecalho') ): 
+		$headerimage = get_field('imagem_de_cabecalho'); ?>
+	<div class="page__thumb" style="background-image: url('<?php echo $headerimage['url']; ?>');"></div>
+	<?php endif; ?>
+	<?php if(get_field('mensagem_da_pagina')): ?>
+	<div class="page__sobre-descript">
+		<div class="page__sobre-container">
+		<?php echo get_field('mensagem_da_pagina'); ?>
+		</div>
+	</div>
+	<?php endif; ?>
+	
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main">
 

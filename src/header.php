@@ -31,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css"/>
 </head>
 
-<body <?php body_class(); ?>>
+<body <?php body_class($class = get_field('imagem_de_cabecalho') ? 'c-header' : '' ); ?>>
     <header class="header-full">
         <div class="menu-header">
             <div class="container">
