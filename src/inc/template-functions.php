@@ -72,7 +72,15 @@ function filter_ajax_handler() {
 
 	if(isset($_POST['action']) &&  $_POST['action'] == "filter"){
 		$args = [
-			'posts_per_page' => 12
+			'posts_per_page' => 12,
+			'meta_query' => [
+				'relation' => 'AND',
+				[
+					'key' => 'cep', 
+					'value' => $_POST['cepuser'],
+					'compare' => '='
+				]
+			]
 		];
 		if($_POST['type'])  $args['post_type'] = $_POST['type'];
 		if($_POST['professional_ttr']){ 
@@ -106,7 +114,7 @@ function filter_ajax_handler() {
 				$response[] = [
 					'title' => get_the_title(),
 					'ID' => get_the_ID(),
-					'atributo' => get_field('atributo'),
+					'atributo' => explode('/', get_field('atributo')),
 					'description' => get_field('descricao_curta'),
 					'thumbnail' => get_the_post_thumbnail(get_the_ID(), 'profile', ['class' => 'thumb__funcionary']),
 					'price' => get_field('salario')

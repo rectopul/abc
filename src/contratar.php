@@ -9,14 +9,32 @@
    * Template Name: contratar
   */
  get_header(); ?>
-
+<div class="modal__service">
+    <div class="modal__container">
+        <div class="modal__header">
+            <div class="modal__close">x</div>
+            <div class="modal__title">
+                <h1>Seja bem vinda (o)</h1>
+                <h3>Digite seu CEP:</h3>
+            </div>
+        </div>
+        <div class="modal__body">
+            <label for="cepuser">
+                <input type="text" name="cepuser" id="cepuser" placeholder="00000-000">
+            </label>
+        </div>
+        <div class="modal__footer">
+            <button>Entrar</button>
+        </div>
+    </div>
+</div>
 <?php if (have_posts()) : the_post(); ?>
 <div class="topheader">
     <h2>Que tipo de porssisional vocês deseja contartar?</h2>
 
     <ul class="list__service">
         <li data-layer="baba" class="active__aba">Babás</li>
-        <li data-layer="domestica">Domésticas</li>
+        <li data-layer="domestica" >Domésticas</li>
     </ul>
 </div>
 
@@ -93,6 +111,23 @@
                 <?php } } wp_reset_postdata(); ?>
             </ul>
         </div>
+    </div>
+
+    <h1 class="idadecr">Qual a idade da (s) criança (s)? </h1>
+    <div data-layer="domesticas" class="domestics post__list-idade">
+        <div class="idade__item selected" data-idade="0 a 6 meses">0 a 6 meses</div>
+        <div class="idade__item" data-idade="6 meses a 1 ano">6 meses a 1 ano</div>
+        <div class="idade__item" data-idade="1 a 2 anos">1 a 2 anos</div>
+        <div class="idade__item" data-idade="2 a 4 anos">2 a 4 anos</div>
+        <div class="idade__item" data-idade="Acima de 4 anos">Acima de 4 anos</div>
+    </div>
+
+    <div class="form__contratar">
+        <span class="form__personal">
+            <h1>Você selecionou <i class="num__personal">0</i> profissionais</h1>
+            <div class="list__profsadd"></div>
+        </span>
+        <?php echo do_shortcode('[contact-form-7 id="227" title="Contratar"]'); ?>
     </div>
 </div>
 

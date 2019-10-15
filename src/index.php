@@ -27,9 +27,13 @@ get_header(); ?>
             while ($wp_query->have_posts()) {
                 $wp_query->the_post();
         ?>
-
+            
             <li class="fullbanner__item">
+                <?php if(get_field('link')): $link = get_field('link'); ?>
+                    <a href="<?php echo $link['url']; ?>"><div class="post__image"><?php the_post_thumbnail(); ?></div></a>
+                <?php else: ?>
                 <div class="post__image"><?php the_post_thumbnail(); ?></div>
+                 <?php endif; ?>
             </li>
 
         <?php } } ?>
@@ -169,7 +173,7 @@ get_header(); ?>
 </section>
 
 <section class="contrate">
-    <a href="#">Contrate agora</a>
+    <a href="<?php echo get_permalink( get_page_by_path( 'contratar' ) ); ?>">Contrate agora</a>
 </section>
 
  
