@@ -59,7 +59,7 @@ get_header(); ?>
 
             <li class="funciona__list-item">
                 <div class="funciona__list-image"><?php the_post_thumbnail(); ?></div>
-                <div class="funciona__list-title"><?php the_title(); ?></div>
+                <div class="funciona__list-title"><a href="<?php echo get_permalink( get_page_by_path( 'como-funciona' ) ); ?>"><?php the_title(); ?></a></div>
                 <div class="funciona__list-text"><?php the_content(); ?></div>
             </li>
 
@@ -106,7 +106,7 @@ get_header(); ?>
 
                 <li class="sobre__list-item">
                     <div class="sobre__list-image"><?php the_post_thumbnail(); ?></div>
-                    <div class="sobre__list-title"><?php the_title(); ?></div>
+                    <div class="sobre__list-title"><a href="<?php echo get_permalink( get_page_by_path( 'sobre' ) ); ?>"><?php the_title(); ?></a></div>
                     <div class="sobre__list-text"><?php the_content(); ?></div>
                 </li>
 

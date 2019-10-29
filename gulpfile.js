@@ -1,88 +1,102 @@
-var gulp        = require("gulp"),
-    imagemin    = require("gulp-imagemin"),
-    svgSprite   = require("gulp-svg-sprite"),
-    svgmin      = require("gulp-svgmin"),
-    stylus      = require('gulp-stylus'),
-    es          = require('event-stream'),
-    concat      = require('gulp-concat'),
-    rename      = require('gulp-rename'),
-    livereload  = require('gulp-livereload'),
-    sourcemaps  = require('gulp-sourcemaps'),
-    postcss     = require('gulp-postcss'),
-    autoprefixer= require('autoprefixer')({grid: true}),
-    pxtorem     = require('postcss-pxtorem'),
-    clean       = require('gulp-clean'),
-    replace     = require('gulp-replace'),
-    del         = require('del');
-    
-var fs      = require('fs');
-var package  = JSON.parse(fs.readFileSync('./package.json'));
-var config   = {
+var gulp = require("gulp"),
+    imagemin = require("gulp-imagemin"),
+    svgSprite = require("gulp-svg-sprite"),
+    svgmin = require("gulp-svgmin"),
+    stylus = require("gulp-stylus"),
+    es = require("event-stream"),
+    concat = require("gulp-concat"),
+    rename = require("gulp-rename"),
+    livereload = require("gulp-livereload"),
+    sourcemaps = require("gulp-sourcemaps"),
+    postcss = require("gulp-postcss"),
+    autoprefixer = require("autoprefixer")({ grid: true }),
+    pxtorem = require("postcss-pxtorem"),
+    clean = require("gulp-clean"),
+    replace = require("gulp-replace"),
+    del = require("del"),
+    merge = require("merge-stream");
+
+var fs = require("fs");
+var package = JSON.parse(fs.readFileSync("./package.json"));
+var config = {
     theme: package.theme,
     style: {
-        in: 'src/assets/css',
-        out: 'wp-content/themes/' + package.theme + '/assets/css'
+        in: "src/assets/css",
+        out: "wp-content/themes/" + package.theme + "/assets/css"
     },
     image: {
-        in: 'src/assets/images',
-        out: 'wp-content/themes/' + package.theme + '/assets/images'
+        in: "src/assets/images",
+        out: "wp-content/themes/" + package.theme + "/assets/images"
     },
     script: {
-        in: 'src/assets/js',
-        out: 'wp-content/themes/' + package.theme + '/assets/js'
+        in: "src/assets/js",
+        out: "wp-content/themes/" + package.theme + "/assets/js"
     },
     svg: {
-        in: 'src/assets/svg',
-        out: 'wp-content/themes/' + package.theme + '/assets/svg'
+        in: "src/assets/svg",
+        out: "wp-content/themes/" + package.theme + "/assets/svg"
     }
 };
 
 // Configs
-require('events').EventEmitter.defaultMaxListeners = Infinity;
+require("events").EventEmitter.defaultMaxListeners = Infinity;
 
 var configSVG = {
-    svg                 : {
-        xmlDeclaration    : false,
+    svg: {
+        xmlDeclaration: false,
         doctypeDeclaration: false,
-        rootAttributes    : {
-            class         : 'sprite-svg',
-            id            : 'sprite-svg'
+        rootAttributes: {
+            class: "sprite-svg",
+            id: "sprite-svg"
         }
     },
     mode: {
         css: {
-            dest        : '.',
-            sprite      : 'sprite-svg.svg',
-            layout      : 'diagonal',
-            bust        : false,
-            render      : {
-                css     : false,
-                scss    : false
+            dest: ".",
+            sprite: "sprite-svg.svg",
+            layout: "diagonal",
+            bust: false,
+            render: {
+                css: false,
+                scss: false
             }
         },
-        symbol          : true
+        symbol: true
     }
-
 };
 
-gulp.task('docker-compose', function(){
+gulp.task("docker-compose", function() {
     "use strict";
-    return gulp.src('docker-compose.yml')
-        .pipe(replace('wae', config.theme))
-        .pipe(rename('docker-compose.yml'))
-        .pipe(gulp.dest('./'));
+    return gulp
+        .src("docker-compose.yml")
+        .pipe(replace("wae", config.theme))
+        .pipe(rename("docker-compose.yml"))
+        .pipe(gulp.dest("./"));
 });
 
 // Clean
-gulp.task("clean", function(){
+gulp.task("clean", function() {
     "use strict";
-    return del(__dirname + '/wp-content/themes/' + config.theme);
+    return del(__dirname + "/wp-content/themes/" + config.theme);
 });
 
 // Copy
 gulp.task("copy", function() {
-    return gulp.src('src/**/*.{php,jpg,jpeg,png,svg,css}')
-        .pipe(gulp.dest(__dirname + '/wp-content/themes/' + config.theme ));
+    var normal = gulp
+            .src("src/**/*.{php,jpg,jpeg,png,svg,css}")
+            .pipe(gulp.dest(__dirname + "/wp-content/themes/" + config.theme)),
+        frameworks = gulp
+            .src("src/frameworks/**/*.{php,jpg,jpeg,png,svg,css,js}")
+            .pipe(
+                gulp.dest(
+                    __dirname +
+                        "/wp-content/themes/" +
+                        config.theme +
+                        "/frameworks"
+                )
+            );
+
+    return merge(normal, frameworks);
 });
 
 // Styles
@@ -91,56 +105,65 @@ gulp.task("styles", function() {
     var vendorFiles = gulp.src([
         // 'bower_components/bootstrap/dist/css/bootstrap.min.css',
         // 'bower_components/owl/owl-carousel/owl.carousel.css'
-        'node_modules/normalize.css/normalize.css'
+        "node_modules/normalize.css/normalize.css"
     ]);
-    var processors = [
-        autoprefixer,
-        pxtorem
-    ];
+    var processors = [autoprefixer, pxtorem];
 
-    var appFiles =  gulp.src([config.style.in + "/app.styl"])
-        .pipe(stylus({
-            'include css': true,
-            "linenos": true
-        }).on('error', function(err) {
-            console.log(err);
-            this.emit('end');
-        }))
+    var appFiles = gulp
+        .src([config.style.in + "/app.styl"])
+        .pipe(
+            stylus({
+                "include css": true,
+                linenos: true
+            }).on("error", function(err) {
+                console.log(err);
+                this.emit("end");
+            })
+        )
         .pipe(postcss(processors));
 
-    return es.concat(vendorFiles, appFiles)
+    return es
+        .concat(vendorFiles, appFiles)
         .pipe(sourcemaps.init())
-        .pipe(concat('app.css'))
+        .pipe(concat("app.css"))
         .pipe(sourcemaps.write())
         .pipe(gulp.dest(config.style.out))
         .pipe(livereload());
 });
 
 // Images
-gulp.task('images', function() {
+gulp.task("images", function() {
     "use strict";
-    return gulp.src([config.image.in + '/**/*.{jpg,png}'])
-        .pipe(imagemin({
-            optimizationLevel: 5
-        }))
+    return gulp
+        .src([config.image.in + "/**/*.{jpg,png}"])
+        .pipe(
+            imagemin({
+                optimizationLevel: 5
+            })
+        )
         .pipe(gulp.dest(config.image.out))
         .pipe(livereload());
 });
 
 // SVG Clean
-gulp.task('svg-min', function () {
+gulp.task("svg-min", function() {
     "use strict";
-    gulp.src(config.svg.in + '/*.svg').pipe(svgmin({
-        plugins: [{removeStyleElement: true}]
-    })).pipe(gulp.dest(config.svg.out));
+    gulp.src(config.svg.in + "/*.svg")
+        .pipe(
+            svgmin({
+                plugins: [{ removeStyleElement: true }]
+            })
+        )
+        .pipe(gulp.dest(config.svg.out));
 });
 
 // SVG
-gulp.task('svg', function() {
+gulp.task("svg", function() {
     "use strict";
-    return gulp.src(config.svg.in + '/**/*.svg')
+    return gulp
+        .src(config.svg.in + "/**/*.svg")
         .pipe(svgSprite(configSVG))
-        .on('error', function(error){
+        .on("error", function(error) {
             console.log(error);
         })
         .pipe(rename(configSVG.mode.css.sprite))
@@ -149,30 +172,43 @@ gulp.task('svg', function() {
 });
 
 //  Watch
-gulp.task('watch', function() {
+gulp.task("watch", function() {
     "use strict";
     livereload.listen();
-    gulp.watch(config.style.in + '/**/*.styl', ['styles']);
-    gulp.watch(config.image.in + '/**/*.{jpg,png}').on("change", function(file) {
-        gulp
-            .src(file.path)
-            .pipe(imagemin({
-                optimizationLevel: 5
-            }))
+    gulp.watch(config.style.in + "/**/*.styl", ["styles"]);
+    gulp.watch(config.image.in + "/**/*.{jpg,png}").on("change", function(
+        file
+    ) {
+        gulp.src(file.path)
+            .pipe(
+                imagemin({
+                    optimizationLevel: 5
+                })
+            )
             .pipe(gulp.dest(config.image.out))
             .pipe(livereload());
     });
-    gulp.watch(config.image.in + '/**/*.svg').on("change", function(file) {
-        gulp
-            .src(file.path)
+    gulp.watch(config.image.in + "/**/*.svg").on("change", function(file) {
+        gulp.src(file.path)
             .pipe(gulp.dest(config.image.out))
             .pipe(livereload());
-
     });
-    gulp.watch('src/**/*.{php,jpg,jpeg,png,svg,css}', ['copy']);
-    gulp.watch(config.svg.in + '/**/*.svg', ['svg']);
-
+    gulp.watch(
+        [
+            "src/**/*.{php,jpg,jpeg,png,svg,css}",
+            "src/frameworks/**/*.{php,jpg,jpeg,png,svg,css,js}"
+        ],
+        ["copy"]
+    );
+    gulp.watch(config.svg.in + "/**/*.svg", ["svg"]);
 });
 
 // Default
-gulp.task('default', ['docker-compose', 'clean', 'copy', 'styles', 'images', 'svg']);
+gulp.task("default", [
+    "docker-compose",
+    "clean",
+    "copy",
+    "styles",
+    "images",
+    "svg"
+]);

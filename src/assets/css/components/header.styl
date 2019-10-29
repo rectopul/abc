@@ -1,3 +1,36 @@
+#wpadminbar
+    z-index: 9
+@keyframes slideDown 
+    from 
+        transform: translateY(-100%)
+    to
+        transform: translateY(0)
+
+@keyframes slideUp 
+    from 
+        transform: translateY(0)
+    to
+        transform: translateY(-300px)
+
+.fade
+    animation: slideDown 500ms
+.slidUp
+    animation: slideUp 500ms
+.toast__container
+    position: fixed
+    right 0
+    top: 0
+    max-width: 350px
+    width: 100%
+    min-height: 200px;
+    z-index 11
+    & .warning__body
+        color: #000000
+        font-weight: 700
+    & .toast
+        z-index 11
+        position relative
+        width: 250px
 .header-full
     position: absolute
     left: 0

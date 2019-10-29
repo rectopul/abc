@@ -70,6 +70,16 @@ function filter_ajax_handler() {
 		exit("No naughty business please");
 	}
 
+	function in_array_r($needle, $haystack, $strict = false) {
+		foreach ($haystack as $item) {
+			if (($strict ? $item === $needle : $item == $needle) || (is_array($item) && in_array_r($needle, $item, $strict))) {
+				return true;
+			}
+		}
+	
+		return false;
+	}
+
 	if(isset($_POST['action']) &&  $_POST['action'] == "filter"){
 		$args = [
 			'posts_per_page' => 12,
@@ -82,57 +92,117 @@ function filter_ajax_handler() {
 				]
 			]
 		];
-		if($_POST['type'])  $args['post_type'] = $_POST['type'];
-		if($_POST['professional_ttr']){ 
-			$args['meta_query'] = [
-				'relation' => 'AND',
-				[
-					'key' => 'atributo',
-					'value' => $_POST['professional_ttr'],
-					'compare'	=> '='
-				]
-			];
-		}
-		$compare = "BETWEEN";
-		$price = $_POST['price'];
-		if($_POST['price'][1] > 3001){ $compare = '>'; $price = $price = $_POST['price'][0]; }
-		if($_POST['price']){
-			$args['meta_query'][] = [
-				[
-					'key' => 'salario',
-					'value' => $price,
-					'compare' => $compare
-				]
-			];
-		}
-
-		$query_post = new WP_Query($args);
-		$response = [];
-		if ($query_post->have_posts()) {
-			while ($query_post->have_posts()) {
-				$query_post->the_post();
-				$response[] = [
-					'title' => get_the_title(),
-					'ID' => get_the_ID(),
-					'atributo' => explode('/', get_field('atributo')),
-					'description' => get_field('descricao_curta'),
-					'thumbnail' => get_the_post_thumbnail(get_the_ID(), 'profile', ['class' => 'thumb__funcionary']),
-					'price' => get_field('salario')
+		$categories = [];
+		if($_POST['cepuser'] && !isset($_POST['type'])){
+			$args['post_type'] = ['domestica', 'baba'];
+			$query_post = new WP_Query($args);
+			$response = [];
+			
+			if ($query_post->have_posts()) {
+				while ($query_post->have_posts()) {
+					$query_post->the_post();
+					$theterms  = get_the_terms( get_the_ID(), 'type__'.get_post_type( get_the_ID() ));
+					$toattrib = [];
+					foreach ($theterms as $key => $term) {
+						$toattrib[] = $term->name;
+						if(!in_array_r($term->slug, $categories)){
+							$categories[] = [
+								'name' => $term->name,
+								'slug' => $term->slug
+							];
+						}
+					}
+					
+					$response['results'][] = [
+						'title' => get_the_title(),
+						'ID' => get_the_ID(),
+						'atributo' => implode(',', $toattrib),
+						'description' => get_field('descricao_curta'),
+						'thumbnail' => get_the_post_thumbnail(get_the_ID(), 'profile', ['class' => 'thumb__funcionary']),
+						'price' => get_field('salario')
+					];
+				}
+			}else{
+				$response['results'][] = [
+					'erros' => true,
+					'field' => 'cep',
+					'message' => 'Não foram encontrados nenhum resultados pelo Cep Formecido!',
+					'terms' => [
+						'type'=> $_POST['type'],
+						'atributo' => $_POST['professional_ttr'],
+						'salary' => $_POST['price']
+					]
 				];
 			}
+			wp_reset_postdata();
 		}else{
-			$response[] = [
-				'erros' => true,
-				'message' => 'Não foram encontrados nenhum resultados pelos termos fornecidos!',
-				'terms' => [
-					'type'=> $_POST['type'],
-					'atributo' => $_POST['professional_ttr'],
-					'salary' => $_POST['price']
-				]
-			];
-		} 
-		wp_reset_postdata();
 
+			if($_POST['type'])  $args['post_type'] = $_POST['type'];
+			if($_POST['professional_ttr']){ 
+				$args['tax_query'] = [
+					'relation' => 'AND',
+					[
+						'taxonomy' => 'type__'.$_POST['type'],
+						'field' => 'slug',
+						'terms' => $_POST['professional_ttr'],
+						'operator'	=> 'IN'
+					]
+				];
+			}
+			$compare = "BETWEEN";
+			$price = $_POST['price'];
+			if($_POST['price'][1] > 3001){ $compare = '>'; $price = $price = $_POST['price'][0]; }
+			if($_POST['price']){
+				$args['meta_query'][] = [
+					[
+						'key' => 'salario',
+						'value' => $price,
+						'compare' => $compare
+					]
+				];
+			}
+
+			$query_post = new WP_Query($args);
+			$response = [];
+			if ($query_post->have_posts()) {
+				while ($query_post->have_posts()) {
+					$query_post->the_post();
+					$theterms  = get_the_terms( get_the_ID(), 'type__'.get_post_type( get_the_ID() ));
+					$toattrib = [];
+					foreach ($theterms as $key => $term) {
+						$toattrib[] = $term->name;
+						if(!in_array_r($term->slug, $categories)){
+							$categories[] = [
+								'name' => $term->name,
+								'slug' => $term->slug
+							];
+						}
+					}
+
+					$response['results'][] = [
+						'title' => get_the_title(),
+						'ID' => get_the_ID(),
+						'atributo' => implode(',', $toattrib),
+						'description' => get_field('descricao_curta'),
+						'thumbnail' => get_the_post_thumbnail(get_the_ID(), 'profile', ['class' => 'thumb__funcionary']),
+						'price' => get_field('salario')
+					];
+				}
+			}else{
+				$response['results'][] = [
+					'erros' => true,
+					'message' => 'Não foram encontrados nenhum resultados pelos termos fornecidos!',
+					'terms' => [
+						'type'=> $_POST['type'],
+						'atributo' => $_POST['professional_ttr'],
+						'salary' => $_POST['price']
+					]
+				];
+			} 
+			wp_reset_postdata();
+		}
+		//$categories = array_unique($categories);
+		$response['categorias'] = $categories;
 		echo json_encode($response);
 	}
     // Handle the ajax request
