@@ -1,0 +1,519 @@
+h1.entry-title
+    font-family: Dosis
+    font-style: normal
+    font-weight: normal
+    font-size: 90px !important
+    line-height: 180px
+.comofunc
+    width: 100%
+    display: flex
+    flex-flow: row nowrap
+    justify-content: center
+    align-items: flex-start
+    &__list
+        font-family: Dosis
+        font-style: normal
+        font-weight: 500
+        font-size: 24px
+        line-height: 35px
+        text-align: left 
+        @media(max-width: 991px)
+            width: 100%
+        & > li 
+            display: flex
+            flex-flow: row nowrap
+            justify-content: flex-start
+            align-items: flex-start
+            margin-bottom: 106px
+            @media(max-width: 991px)
+                flex-flow: row wrap
+            & h1 
+                font-family: Dosis
+                font-style: normal
+                font-weight: bold
+                font-size: 53px
+                line-height: 54px
+            & > span 
+                display: flex
+                flex-flow: column nowrap
+                justify-content: flex-start
+                align-items: flex-start
+                @media(max-width: 991px)
+                    width: 100%
+                & > p
+                    font-family: Dosis
+                    font-style: normal
+                    font-weight: normal
+                    font-size: 24px
+                    line-height: 35px
+                & > ul 
+                    display: flex
+                    flex-flow: column nowrap
+                    justify-content: flex-start
+                    @media(max-width: 991px)
+                        width: 100%
+                    & > li 
+                        width: 702px
+                        max-width: 100%
+                        border: 10px solid #BADAB5
+                        padding 120px 80px
+                        margin-bottom: 80px
+            & > i 
+                max-width: 344px
+                font-family: Dosis
+                font-style: normal
+                font-weight: bold
+                font-size: 332.633px
+                line-height: 339px
+                color: #BADAB5
+                margin-right: 100px
+.sobre
+    display: flex
+    flex-flow: row wrap
+    justify-content: space-between
+    @media screen and (min-width: 1024px)
+        flex-flow: row nowrap
+    &__selecao
+        &-title
+            font-family: Dosis
+            text-align: left
+            font-size: 53px
+            font-weight: bold
+            font-style: normal
+            font-stretch: normal
+            line-height: 1.28
+            letter-spacing: 2.65px
+            color: #666666
+        &-img 
+            overflow hidden
+            position relative
+            padding-left: 120px
+            & img
+                width: 100%
+            &:after
+                content: ' '
+                width: 100%
+                height calc(100% - 180px)
+                background: transparent
+                border: solid 20px #badab5
+                position: absolute
+                left 200px
+                top 90px
+        &-list
+            width: 100%
+            margin-top: 110px
+            & > li 
+                margin-bottom: 80px
+                &:first-line
+                    font-family: Dosis
+                    font-size: 53px
+                    font-weight: bold
+                    font-style: normal
+                    font-stretch: normal
+                    line-height: 1.28
+                    text-align: left
+                    letter-spacing: 2.65px
+                    color: #badab5
+            & p 
+                font-family: Dosis
+                font-size: 24px !important
+                font-weight: 500
+                font-style: normal
+                text-align: left
+                font-stretch: normal
+                line-height: 1.46 !important
+                letter-spacing: 1.2px
+                color: #424242
+    &__content-left
+        flex: 0 0 45%
+        text-align: left
+        & h1 
+            font-family: Dosis
+            font-size: 53px
+            font-weight: bold
+            font-style: normal
+            font-stretch: normal
+            line-height: 1.02
+            letter-spacing: 2.65px
+            color: #424242
+        & article 
+            & , & > p
+                font-family: Dosis
+                font-size: 24px !important
+                font-weight: 500
+                font-style: normal
+                font-stretch: normal
+                line-height: 1.46 !important
+                letter-spacing: 1.2px
+                color: #424242
+        &-1,
+        &-2
+            margin-bottom: 120px
+            font-family: Dosis
+            font-size: 24px !important
+            font-weight: 500
+            font-style: normal
+            font-stretch: normal
+            line-height: 1.46 !important
+            letter-spacing: 1.2px
+            color: #424242
+            & h1 
+                font-family: Dosis
+                font-size: 53px
+                font-weight: bold
+                font-style: normal
+                font-stretch: normal
+                line-height: 1.02
+                letter-spacing: 2.65px
+                color: #424242
+            & p 
+                font-family: Dosis
+                font-size: 24px !important
+                font-weight: 500
+                font-style: normal
+                font-stretch: normal
+                line-height: 1.46 !important
+                letter-spacing: 1.2px
+                color: #424242
+            
+    &__content-right
+        flex: 0 0 50%
+        &-list
+            display: flex
+            flex-flow: row wrap
+            justify-content: flex-start
+            & > li 
+                flex: 0 0 calc(50% - 30px)
+                margin: 0 15px !important
+                margin-bottom: 180px !important
+                display: flex
+                flex-flow: column nowrap
+                justify-content: flex-start
+                align-items: center
+                font-family: Dosis
+                font-size: 18px
+                font-weight: 500
+                font-style: normal
+                font-stretch: normal
+                line-height: 1.56
+                letter-spacing: 0.9px
+                color: #424242
+                & figure 
+                    width: 100%
+                    display: flex
+                    flex-flow: column nowrap
+                    justify-content: flex-start
+                    align-items: center !important
+                    height auto !important
+                    & img 
+                        width: 90px !important
+                        height 90px !important
+                        display: block
+                    & figcaption 
+                        position initial !important
+                        overflow hidden !important
+                        max-height: unset !important
+                        display: block
+                        background: none !important
+                        font-family: Dosis
+                        font-size: 18px !important
+                        font-weight: 500 !important
+                        font-style: normal !important
+                        font-stretch: normal !important
+                        line-height: 1.56 !important
+                        letter-spacing: 0.9px !important
+                        color: #424242 !important
+                        & strong
+                            font-family: Dosis
+                            font-size: 30px
+                            font-weight: bold
+                            font-style: normal
+                            font-stretch: normal
+                            line-height: 1.8
+                            letter-spacing: 1.5px
+                            color: #424242
+                            margin: 20px 0 10px 0
+                & h2 
+                    font-family: Dosis
+                    font-size: 30px
+                    font-weight: bold
+                    font-style: normal
+                    font-stretch: normal
+                    line-height: 1.8
+                    letter-spacing: 1.5px
+                    color: #424242
+                    margin: 20px 0 10px 0
+
+.sobrenos
+    width: 100%
+    background: url(../../img/bg-sobre1.jpg)
+    background-position: center
+    background-repeat no-repeat
+    background-size: cover
+    padding-bottom: 50px
+    position relative
+    overflow: hidden
+    .sobrenos__post
+        padding-right: 320px
+        position: relative
+        @media(max-width:992px)
+            padding-right: 0px
+    .sobrenos__container
+        max-width: 1170px
+        width: 100%
+        padding: 0 15px
+        margin: 0 auto
+        padding-top: 198px
+        color: #323232
+        @media(max-width:992px)
+            padding-top: 145px
+    .sobrenos__titulo
+        font-size: 48px
+        font-weight: bold
+        line-height: 40px
+        @media(max-width:992px)
+            font-size: 28px
+    .sobrenos__subtitulo
+        font-size: 48px
+        font-weight: 900
+        line-height: 60px
+        @media(max-width:992px)
+            font-size: 28px
+            line-height: 30px
+    .sobrenos__texto
+        display: block
+        font-size: 14px
+        font-weight: 400
+        line-height: 25px
+        padding-right: 70px
+        width: 100%
+        @media(max-width:992px)
+            padding-right: 0px
+    .sobrenos__divisor
+        height 1px
+        width: 145px
+        background: #323232
+        margin: 27px 0
+    .sobrenos__conteudo
+        display: block
+    .sobrenos__imagem
+        position: absolute
+        left: calc(100% - 320px)
+        bottom: -53px
+        transition: all .5s ease-in-out
+        opacity 0
+        transform: translate3d(0, -200%, 0)
+        @media(max-width:992px)
+            display: none
+        img
+            max-width none
+    .sobrenos__imagem--animacao
+        opacity 1
+        transform: translate3d(0, 0, 0)
+.equipe
+    width: 100%
+    background-position: center
+    background-repeat no-repeat
+    background-size: cover
+    background: url(../../img/bg-sobre2.jpg)
+    position relative
+    color: #323232
+    @media(max-width: 992px)
+        height auto
+        padding-bottom: 45px
+    .equipe__container
+        max-width: 1040px
+        width: 100%
+        padding: 0 15px
+        margin: 0 auto
+        padding-top: 80px
+        padding-bottom: 65px
+        overflow hidden
+    .equipe__conteudo
+        max-width: 750px
+        @media(max-width: 992px)
+            text-align: center
+            width: 100%
+            max-width: 100%
+    .equipe__titulo
+        display: flex
+        align-items: center
+        margin-bottom: 15px
+        @media(max-width: 992px)
+            justify-content: center!important
+            flex-wrap: wrap
+    .equipe__nome
+        font-size: 18px
+        font-weight: bold
+        margin-right: 5px
+        @media(max-width: 992px)
+            display: block
+            width: 100%
+            text-align: center
+    .equipe__cargo
+        font-size: 18px
+        font-weight: 400
+    .equipe__texto
+        font-size: 14px
+        font-weight: 400
+        line-height: 25px
+    .equipe__item
+        display flex
+        align-items: center
+        margin-bottom: 60px
+        @media(max-width: 992px)
+            flex-wrap: wrap!important
+            justify-content: center!important
+        &:last-child
+            margin-bottom: 0
+        &:nth-child(odd)
+            justify-content: flex-start
+            transition: all .5s ease-in-out
+            transform: translate3d(-200%, 0, 0)
+            .equipe__img
+                margin-right: 30px
+                @media(max-width: 992px)
+                    margin-right: 0px
+        &:nth-child(even)
+            justify-content: flex-end
+            transition: all .5s ease-in-out
+            transform: translate3d(200%, 0, 0)
+            .equipe__img
+                order: 1
+                margin-left: 30px
+                @media(max-width: 992px)
+                    margin-left: 0px
+                    order: 0
+            .equipe__conteudo
+                text-align: right
+                @media(max-width: 992px)
+                    text-align: center
+            .equipe__titulo
+                justify-content: flex-end
+                @media(max-width: 992px)
+                    justify-content: flex-start
+
+        &--animacao
+            &:nth-child(odd)
+                transform: translate3d(0, 0, 0)
+            &:nth-child(even)
+                transform: translate3d(0, 0, 0)
+.parceiros
+    width: 100%
+    background: #ffffff
+    .parceiros__container
+        max-width: 1170px
+        width: 100%
+        padding: 0 15px
+        margin: 0 auto
+        border-bottom: 1px solid #DDDDDD
+        padding-top: 30px
+        padding-bottom: 50px
+        margin-bottom: 32px
+    .parceiros__titulo
+        font-size: 48px
+        color: #323232
+        font-weight: bold
+        line-height: 60px
+    .parceiros__divisor
+        height 1px
+        width: 145px
+        background: #323232
+        margin: 30px 0
+    .parceiros__lista
+        display: flex
+        align-items: center
+        justify-content: flex-start
+        flex-wrap: wrap
+        @media(max-width: 425px)
+            justify-content: center
+    .parceiros__item
+        margin-right: 50px
+        @media(max-width: 425px)
+            margin-right: 0px
+            margin-bottom: 30px
+            flex: 0 0 100%
+            text-align: center
+
+body
+    &.c-header
+        & p 
+            font-family: Dosis
+            font-size: 24px
+            font-weight: 500
+            font-style: normal
+            font-stretch: normal
+            line-height: 1.46
+            letter-spacing: 1.2px
+            color: #424242
+        & header.header-full
+            background: none
+.content-area
+    & h3 
+        font-family: Dosis
+        font-size: 53px
+        font-weight: bold
+        font-style: normal
+        font-stretch: normal
+        text-align: left
+        line-height: 1.02
+        letter-spacing: 2.65px
+        color: #424242
+.page-text-left
+
+.block-person-list
+    display: flex
+    flex-flow: row wrap
+    justify-content: flex space-between
+    align-items: flex-start
+    font-family: Dosis
+    font-size: 18px
+    font-weight: 500
+    font-style: normal
+    font-stretch: normal
+    line-height: 1.56
+    letter-spacing: 0.9px
+    color: #424242
+    & h5 
+        font-family: Dosis
+        font-size: 30px
+        font-weight: bold
+        font-style: normal
+        font-stretch: normal
+        line-height: 1
+        letter-spacing: 1.5px
+        color: #424242
+    & > li 
+        flex: 0 0 50%
+        padding: 10px
+
+.page
+    &__thumb
+        display: flex
+        flex-flow: row nowrap
+        justify-content: center
+        align-items: center
+        width: 100%
+        height: 565px
+    &__sobre
+        &-descript
+            display: flex
+            width: 100%
+            background-color: #badab5
+            font-family: Dosis
+            font-size: 30px
+            font-weight: 600
+            font-style: normal
+            font-stretch: normal
+            line-height: 1.8
+            letter-spacing: 1.5px
+            color: #424242
+            margin-top: -20px
+            padding: 0 20px
+            @media screen and (min-width: 1024px)
+                padding: 0
+        &-container
+            padding: 60px 0
+            width: 100%
+            max-width: 1178px
+            margin 0 auto !important

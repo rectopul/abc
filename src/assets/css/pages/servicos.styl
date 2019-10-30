@@ -1,0 +1,89 @@
+.servicos
+    width: 100%
+    overflow hidden
+    position: relative
+    .servicos__container
+        max-width: 1170px
+        width: 100%
+        padding: 0 15px
+        margin: 0 auto
+        padding-top: 198px
+        color: #323232
+        padding-bottom: 20px
+        border-bottom: 1px solid #DDDDDD
+        margin-bottom: 32px
+        @media(max-width 992px)
+            padding-top: 115px
+    .servicos__titulo
+        font-size: 48px
+        font-weight: bold
+        line-height: 60px
+        @media(max-width 992px)
+            text-align: center
+            font-size: 28px
+    .servicos__divisor
+        height 1px
+        width: 145px
+        background: #323232
+        margin: 25px 0
+        @media(max-width 992px)
+            margin: 25px auto
+    .servicos__texto
+        font-size: 20px
+        max-width: 550px
+        font-weight: 300
+        line-height: 25px
+        display: block
+        @media(max-width 992px)
+            max-width: 100%
+            text-align: center
+    .servicos__img img
+        position: absolute
+        top: 0
+        left: 50%
+        z-index: -1
+        @media(max-width 992px)
+            display: none
+    .servicos__posts
+        margin-top: 115px
+        opacity 0
+        transition: all .5s ease-in-out
+        @media(max-width 992px)
+            margin-top: 50px
+        &--animacao
+            opacity 1
+    .servicos__lista
+        display: flex
+        align-items: center
+        justify-content: flex-start
+        flex-wrap: wrap
+        max-width: 975px
+        @media(max-width 992px)
+            justify-content: center
+    .servicos__item
+        margin-right: 30px
+        margin-bottom: 40px
+        @media(max-width 992px)
+            margin: 0 15px
+            margin-bottom: 40px
+        @media(max-width 425px)
+            margin: 0 5px
+            margin-bottom: 15px
+            max-width: 135px
+        &:nth-child(4)
+            margin-right: 165px
+            @media(max-width 992px)
+                margin-right: 15px
+            @media(max-width 425px)
+                margin-right: 5px
+    .servicos__nome
+        font-size: 18px
+        font-weight: bold
+        text-align: center
+        @media(max-width 425px)
+            font-size: 15px
+    .servicos__imagem
+        img
+            transition: all .3s ease-in-out
+            &:hover
+                transform: scale(0.85)

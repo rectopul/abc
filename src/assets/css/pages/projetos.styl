@@ -1,0 +1,116 @@
+.projeto
+    width: 100%
+    overflow hidden
+    position: relative
+    background: url("../../img/bg-projetos.jpg")
+    background-repeat: no-repeat
+    background-size: auto 
+    background-position-x: right
+    @media(max-width 768px)
+        background: none
+    .projeto__container
+        max-width: 1170px
+        width: 100%
+        padding: 0 15px
+        margin: 0 auto
+        padding-top: 198px
+        color: #323232
+        padding-bottom: 57px
+        border-bottom: 1px solid #DDDDDD
+        margin-bottom: 32px
+        @media(max-width 992px)
+            padding-top: 115px
+    .projeto__titulo
+        font-size: 48px
+        font-weight: bold
+        line-height: 60px
+        @media(max-width 992px)
+            text-align: center
+            font-size: 28px
+    .projeto__divisor
+        height 1px
+        width: 145px
+        background: #323232
+        margin: 25px 0
+        @media(max-width 992px)
+            margin: 25px auto
+    .projeto__texto
+        font-size: 20px
+        max-width: 550px
+        font-weight: 400
+        line-height: 25px
+        display: block
+        @media(max-width 992px)
+            max-width: 100%
+            text-align: center
+    .projeto__postagens
+        margin-top: 170px
+        @media(max-width 992px)
+            margin-top:240px
+        @media(max-width 768px)
+            margin-top:0px
+    .projeto__tituloprojeto
+        font-size: 20px
+        font-weight: 900
+        line-height: 25px
+        text-align: center
+        margin-top: 78px
+    .projeto__divisorprojeto
+        height 1px
+        width: 145px
+        background: #323232
+        margin: 16px auto
+    .projeto__slugprojeto
+        font-size: 25px
+        font-weight: 400
+        line-height: 31px
+        text-align: center
+    .projeto__listaprojeto
+        display: flex
+        align-items: center
+        justify-content: flex-start
+        flex-wrap: wrap
+        margin: -15px
+        padding-top: 25px
+        @media(max-width 992px)
+            margin: 0
+            justify-content: center
+        .slick-arrow
+            background: none
+            border: none
+            font-size: 0
+            width: 36px
+            height 24px
+            position: absolute
+            display block
+            z-index 1
+        .slick-prev
+            background: url("../../img/seta-esquerta.png")
+            left -50px
+            top: 50%
+            transform: translateY(-50%)
+            @media(max-width: 1250px)
+                left 0px
+        .slick-next
+            background: url("../../img/seta-direita.png")
+            right -50px
+            top: 50%
+            transform: translateY(-50%)
+            @media(max-width: 1250px)
+                right 0px
+    .projeto__itemprojeto
+        padding: 15px
+        width: 25%
+        transition: all .5s ease-in-out
+        opacity 0
+        @media(max-width 992px)
+            max-width: 100%
+        &--animacao
+            opacity 1
+        h3
+            font-size: 14px
+            font-weight: 400
+            margin-top: 10px
+        img
+            @media(max-width 992px)
+                margin: 0 auto

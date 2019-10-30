@@ -1,0 +1,14 @@
+/**
+ *  Site Name: Auaha
+ *
+ *  Stylesheet: Core Functions
+ */
+
+rem(pixels, context=config.font.size)
+    u       = unit(pixels)
+
+    if (u is 'px')
+        return unit(pixels/context, 'rem')
+    else
+        return unit(pixels, u)
+
