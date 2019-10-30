@@ -3,7 +3,6 @@
 node_modules
 npm-debug.log
 wp-content/update
-wp-content/themes
 wp-content/index.php
 wp-content/plugins/akismet/
 wp-content/plugins/hello.php
