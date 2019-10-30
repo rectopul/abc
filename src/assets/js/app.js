@@ -260,33 +260,61 @@ jQuery(document).ready(function($) {
                   ? price.substring(0, 1) + "." + price.substring(1, 100)
                   : price;
               var clsstt = "";
-
-              $(".post__type-" + typ)
-                .find(".list__profissionais")
-                .append(
-                  '\
+              if (!typ) {
+                $(".post__type-baba")
+                  .find(".list__profissionais")
+                  .append(
+                    '\
                             <li class="item__list">\
                                 <figure>' +
-                    thumbnail +
-                    '</figure>\
+                      thumbnail +
+                      '</figure>\
                                 <span class="item__attr">' +
-                    atributo +
-                    '</span>\
+                      atributo +
+                      '</span>\
                                 <span class="item__title">' +
-                    title +
-                    '</span>\
+                      title +
+                      '</span>\
                                 <span class="item__desc">' +
-                    description +
-                    '</span>\
+                      description +
+                      '</span>\
                                 <span class="item__salario"><strong>Prentensão salarial</strong>R$' +
-                    formatprice +
-                    ',00</span>\
+                      formatprice +
+                      ',00</span>\
                                 <span class="button--contratar" data-id="' +
-                    ID +
-                    '">Contratar</span>\
+                      ID +
+                      '">Contratar</span>\
                             </li>\
                             '
-                );
+                  );
+              } else {
+                $(".post__type-" + typ)
+                  .find(".list__profissionais")
+                  .append(
+                    '\
+                              <li class="item__list">\
+                                  <figure>' +
+                      thumbnail +
+                      '</figure>\
+                                  <span class="item__attr">' +
+                      atributo +
+                      '</span>\
+                                  <span class="item__title">' +
+                      title +
+                      '</span>\
+                                  <span class="item__desc">' +
+                      description +
+                      '</span>\
+                                  <span class="item__salario"><strong>Prentensão salarial</strong>R$' +
+                      formatprice +
+                      ',00</span>\
+                                  <span class="button--contratar" data-id="' +
+                      ID +
+                      '">Contratar</span>\
+                              </li>\
+                              '
+                  );
+              }
             }
           }
 
