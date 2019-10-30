@@ -30,7 +30,7 @@
 </div>
 <?php if (have_posts()) : the_post(); ?>
 <div class="topheader">
-    <h2>Que tipo de porssisional vocês deseja contartar?</h2>
+    <h2>Que tipo de profissional vocês deseja contratar?</h2>
 
     <ul class="list__service">
         <li data-layer="baba" class="active__aba">Babás</li>
