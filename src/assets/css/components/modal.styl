@@ -93,10 +93,14 @@
         flex-flow: column nowrap
         align-items: center
         justify-content: flex-start
-        max-width: 1570px
+        max-width: 100%
         padding: 0 15px
         margin: 60px auto
         width: 100%
+        @media screen and (min-width: 1367px)
+            max-width: 1570px
+        @media screen and (min-width: 1024px)
+            max-width: 1300px
         & input[type='submit']
             width: 503px
             height: 97px
@@ -131,8 +135,8 @@
                     justify-content: space-between
                     align-items: flex-start
                     & label 
-                        flex 0 0 50%
-                        padding-left: 50px
+                        flex 0 0 100%
+                        padding-left: 0
                         font-family: Dosis
                         font-size: 26px
                         font-weight: normal
@@ -142,9 +146,14 @@
                         letter-spacing: normal
                         color: #5e6271
                         margin-bottom: 70px
+                        @media screen and (min-width: 1024px)
+                            flex 0 0 50%
+                            padding-left: 50px
                         &:nth-child(odd)
                             padding-left: 0
-                            padding-right: 50px
+                            padding-right: 0
+                            @media screen and (min-width: 1024px)
+                                padding-right: 50px
                         & input
                             border: solid 1px #626262
                             background-color: rgba(0, 0, 0, 0)
@@ -186,6 +195,8 @@
         border-radius: 3px
         position relative
         padding: 40px
+        @media screen and (max-width: 993px)
+            width: calc(100% - 30px)
         &.close
             animation-name: slide-out
             animation-duration: 500ms
@@ -215,6 +226,10 @@
         letter-spacing: 2px
         color: #666666
         text-align: center
+        @media screen and (max-width: 993px)
+            font-size: 20px
+            & h1 
+                font-size: 25px
         & h3 
             font-weight: normal
     &__body

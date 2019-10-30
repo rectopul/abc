@@ -17,12 +17,16 @@ h1.entry-title
         font-size: 24px
         line-height: 35px
         text-align: left 
+        @media(max-width: 991px)
+            width: 100%
         & > li 
             display: flex
             flex-flow: row nowrap
             justify-content: flex-start
             align-items: flex-start
             margin-bottom: 106px
+            @media(max-width: 991px)
+                flex-flow: row wrap
             & h1 
                 font-family: Dosis
                 font-style: normal
@@ -34,6 +38,8 @@ h1.entry-title
                 flex-flow: column nowrap
                 justify-content: flex-start
                 align-items: flex-start
+                @media(max-width: 991px)
+                    width: 100%
                 & > p
                     font-family: Dosis
                     font-style: normal
@@ -44,6 +50,8 @@ h1.entry-title
                     display: flex
                     flex-flow: column nowrap
                     justify-content: flex-start
+                    @media(max-width: 991px)
+                        width: 100%
                     & > li 
                         width: 702px
                         max-width: 100%
@@ -61,8 +69,10 @@ h1.entry-title
                 margin-right: 100px
 .sobre
     display: flex
-    flex-flow: row nowrap
+    flex-flow: row wrap
     justify-content: space-between
+    @media screen and (min-width: 1024px)
+        flex-flow: row nowrap
     &__selecao
         &-title
             font-family: Dosis
@@ -499,6 +509,9 @@ body
             letter-spacing: 1.5px
             color: #424242
             margin-top: -20px
+            padding: 0 20px
+            @media screen and (min-width: 1024px)
+                padding: 0
         &-container
             padding: 60px 0
             width: 100%
