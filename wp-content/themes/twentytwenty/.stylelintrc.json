@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
 	"extends": [
 		"stylelint-config-wordpress"
@@ -10,3 +11,17 @@
 		"a11y/selector-pseudo-class-focus": true
 	}
 }
+=======
+{
+	"extends": [
+		"stylelint-config-wordpress"
+	],
+	"plugins": ["stylelint-a11y"],
+	"rules": {
+		"font-family-no-missing-generic-family-keyword": null,
+		"no-descending-specificity": null,
+		"a11y/no-outline-none": true,
+		"a11y/selector-pseudo-class-focus": true
+	}
+}
+>>>>>>> 2834f6960e3697efa839d85fdc02147afa566920

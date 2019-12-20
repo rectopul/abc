@@ -1,0 +1,87 @@
+.select
+    &__wrapper
+        width: 100%
+        max-width: 1120px
+        display: flex
+        justify-content: center
+        margin: 0 auto
+        flex-wrap: wrap
+        margin-bottom: 60px
+        & > button
+            width: 70px
+            height: 69px
+            background: #BADAB5
+            display: flex
+            justify-content: center
+            align-items: center
+            color: #FFFFFF
+            font-weight: 700
+            margin-left: 18px
+            border-radius: 35px
+    &__inner_wrapper
+        height: 68px;
+        background: rgba(0, 0, 0, 0.0001);
+        border: 1px solid #626262;
+        box-sizing: border-box;
+        border-radius: 35px
+        display: flex
+        flex-flow: column nowrap
+        align-items: center
+        @media screen and (min-width: 1024px)
+            width: calc(100% - 90px)
+            max-width: 1050px
+            margin: 0 auto
+    &__require
+        height: auto
+        box-sizing: border-box;
+        display: flex
+        flex-flow: column nowrap
+        align-items: center
+        margin: 0 auto
+        margin-top: -68px
+        margin-left: 0
+        max-height: 58px
+        overflow hidden
+        @media screen and (min-width: 1024px)
+            width: calc(100% - 90px)
+        &.expand
+            max-height: 1000px
+        & > li
+            height 68px
+            width: 100%
+            display: block
+            text-align: center
+            justify-content: center
+            line-height: 68px
+            background: #EAF4E9
+            color: #666666
+            font-family: Dosis;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 29.4813px;
+            line-height: 59px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: #666666;
+            position relative
+            order 1
+            &:not(.active__aba)
+                &:after
+                    content: ''
+                    width: calc(100% - 40px)
+                    position: absolute
+                    top: -1px
+                    left 20px
+                    height 0
+                    border-top: 1px solid #626262
+            &:nth-child(2)
+                &:after
+                    content: none
+            &:hover
+                background: #666666
+                color: #ffffff;
+            &:first-child
+                background: transparent
+                color: #666666;
+

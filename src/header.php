@@ -32,6 +32,7 @@
 </head>
 
 <body <?php body_class($class = get_field('imagem_de_cabecalho') ? 'c-header' : '' ); ?>>
+    <?php wp_body_open(); ?>
     <!-- Toasts -->
     <div aria-live="polite" aria-atomic="true" class="toast__container">
         <!-- Position it -->
