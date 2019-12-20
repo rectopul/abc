@@ -40,7 +40,20 @@
 
 <div class="wrapper__content professionals__wrapper">
     <h2>Ótimo! Temos algumas opções. Escolha abaixo a melhor para você.</h2>
-
+    <!--TYPE-SELECT-->
+    <div class="select__wrapper">
+        <div class="select__inner_wrapper">
+        </div>
+        <button class="submit">></button>
+        <ul class="select__require">
+            <li class="active__aba" data-atrib="Folguista">Folguista</li>
+            <li data-atrib="Ir e vir">Ir e vir</li>
+            <li data-atrib="Noturna">Noturna</li>
+            <li data-atrib="Arrumadeira">Arrumadeira</li>
+        </ul>
+        
+    </div>
+    <!--TYPE-BUTTON-->
     <ul class="abas__require">
         <li class="active__aba" data-atrib="Folguista">Folguista</li>
         <li data-atrib="Ir e vir">Ir e vir</li>

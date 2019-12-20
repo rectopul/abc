@@ -9,10 +9,6 @@
    * Template Name: contratar
   */
  get_header(); ?>
-<div class="formhidden">
-    <div class="closex">x</div>
-    <h1>Formulário para contratar</h1>
-    <?php echo do_shortcode('[contact-form-7 id="227" title="Contratar"]'); ?>
 <div class="modal__service">
     <div class="modal__container">
         <div class="modal__header">
@@ -34,7 +30,7 @@
 </div>
 <?php if (have_posts()) : the_post(); ?>
 <div class="topheader">
-    <h2>Que tipo de porssisional vocês deseja contartar?</h2>
+    <h2>Que tipo de profissional vocês deseja contratar?</h2>
 
     <ul class="list__service">
         <li data-layer="baba" class="active__aba">Babás</li>
@@ -44,7 +40,20 @@
 
 <div class="wrapper__content professionals__wrapper">
     <h2>Ótimo! Temos algumas opções. Escolha abaixo a melhor para você.</h2>
-
+    <!--TYPE-SELECT-->
+    <div class="select__wrapper">
+        <div class="select__inner_wrapper">
+        </div>
+        <button class="submit">></button>
+        <ul class="select__require">
+            <li class="active__aba" data-atrib="Folguista">Folguista</li>
+            <li data-atrib="Ir e vir">Ir e vir</li>
+            <li data-atrib="Noturna">Noturna</li>
+            <li data-atrib="Arrumadeira">Arrumadeira</li>
+        </ul>
+        
+    </div>
+    <!--TYPE-BUTTON-->
     <ul class="abas__require">
         <li class="active__aba" data-atrib="Folguista">Folguista</li>
         <li data-atrib="Ir e vir">Ir e vir</li>
