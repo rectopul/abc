@@ -1,6 +1,5 @@
-version: '2'
+version: "2"
 services:
-
     db:
         image: mysql:5.7
         volumes:
@@ -8,7 +7,7 @@ services:
         expose:
             - 3306
         networks:
-            - mynest
+            - auaha
         environment:
             MYSQL_ROOT_PASSWORD: wordpress
             MYSQL_DATABASE: wordpress
@@ -24,10 +23,10 @@ services:
         expose:
             - 80
         networks:
-            - mynest
+            - auaha
             - nginx-proxy
         environment:
-            VIRTUAL_HOST: mynest.localhost
+            VIRTUAL_HOST: auaha.localhost
             WORDPRESS_DB_HOST: db:3306
             WORDPRESS_DB_USER: wordpress
             WORDPRESS_DB_PASSWORD: wordpress
@@ -39,10 +38,10 @@ services:
         expose:
             - 80
         networks:
-            - mynest
+            - auaha
             - nginx-proxy
         environment:
-            VIRTUAL_HOST: phpmyadmin.mynest.localhost
+            VIRTUAL_HOST: phpmyadmin.auaha.localhost
             PMA_USERNAME: wordpress
             PMA_PASSWORD: wordpress
             PMA_HOSTS: db
@@ -52,7 +51,7 @@ volumes:
     db_data:
 
 networks:
-    mynest:
+    auaha:
     nginx-proxy:
         external:
             name: proxy_default
