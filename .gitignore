@@ -7,8 +7,7 @@ wp-content/update
 wp-content/index.php
 wp-content/plugins/akismet/
 wp-content/themes
+wp-content/plugins/all-in-one-wp-migration/storage
 wp-content/plugins/hello.php
 wp-content/ai1wm-backups
-wp-content/=== Regenerate Thumbnails === Contributors: Viper007Bond Tags: thumbnail, thumbnails, post thumbnail, post thumbnails Requires at least: 4.7 Tested up to: 5.1.1 Requires PHP: 5.2.4 Stable tag: 3.1.1 License: GPLv2 or later License URI: https:/www.gnu.org/licenses/gpl-2.0.html Regenerate the th
-wp-content/<?php if( ! defined( 'ABSPATH' ) ) exit; / Exit if accessed directly if( ! class_exists('acf_admin') ) : class acf_admin { / vars var $notices = array(); /* * __construct * * Initialize filters, action, variables and includes * * @type function * @date 23/06/12 * @since 5.0.0 * * @param n/a * @r/
-wp-content/<?php namespace WPEM; if ( ! defined( 'ABSPATH' ) ) { exit; } final class Admin { use Data; /** * Holds the image api instance * * @var object */ private $image_api; /** * Holds the Log instance * * @var object */ private $log; /** * Class constructor */ public function __construct() { $this->c/
+

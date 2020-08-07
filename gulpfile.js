@@ -1,60 +1,62 @@
-var gulp = require("gulp"),
-    imagemin = require("gulp-imagemin"),
-    svgSprite = require("gulp-svg-sprite"),
-    svgmin = require("gulp-svgmin"),
-    stylus = require("gulp-stylus"),
-    es = require("event-stream"),
-    concat = require("gulp-concat"),
-    rename = require("gulp-rename"),
-    livereload = require("gulp-livereload"),
-    sourcemaps = require("gulp-sourcemaps"),
-    postcss = require("gulp-postcss"),
-    autoprefixer = require("autoprefixer")({ grid: true }),
-    pxtorem = require("postcss-pxtorem"),
-    clean = require("gulp-clean"),
-    replace = require("gulp-replace"),
-    del = require("del"),
-    merge = require("merge-stream");
+const { src, dest, watch, series } = require('gulp')
+var gulp = require('gulp'),
+    imagemin = require('gulp-imagemin'),
+    svgSprite = require('gulp-svg-sprite'),
+    svgmin = require('gulp-svgmin'),
+    stylus = require('gulp-stylus'),
+    es = require('event-stream'),
+    concat = require('gulp-concat'),
+    rename = require('gulp-rename'),
+    sourcemaps = require('gulp-sourcemaps'),
+    postcss = require('gulp-postcss'),
+    autoprefixer = require('autoprefixer-stylus'),
+    pxtorem = require('postcss-pxtorem'),
+    replace = require('gulp-replace'),
+    merge = require('merge-stream')
 
-var fs = require("fs");
-var package = JSON.parse(fs.readFileSync("./package.json"));
+var fs = require('fs')
+var package = JSON.parse(fs.readFileSync('./package.json'))
 var config = {
     theme: package.theme,
     style: {
-        in: "src/assets/css",
-        out: "wp-content/themes/" + package.theme + "/assets/css",
+        in: 'src/assets/css',
+        out: 'wp-content/themes/' + package.theme + '/assets/css',
+    },
+    vendor: {
+        in: 'src/vendor',
+        out: 'wp-content/themes/' + package.theme + '/vendor',
     },
     image: {
-        in: "src/assets/images",
-        out: "wp-content/themes/" + package.theme + "/assets/images",
+        in: 'src/assets/images',
+        out: 'wp-content/themes/' + package.theme + '/assets/images',
     },
     script: {
-        in: "src/assets/js",
-        out: "wp-content/themes/" + package.theme + "/assets/js",
+        in: 'src/assets/js',
+        out: 'wp-content/themes/' + package.theme + '/assets/js',
     },
     svg: {
-        in: "src/assets/svg",
-        out: "wp-content/themes/" + package.theme + "/assets/svg",
+        in: 'src/assets/svg',
+        out: 'wp-content/themes/' + package.theme + '/assets/svg',
     },
-};
+}
 
 // Configs
-require("events").EventEmitter.defaultMaxListeners = Infinity;
+require('events').EventEmitter.defaultMaxListeners = Infinity
 
 var configSVG = {
     svg: {
         xmlDeclaration: false,
         doctypeDeclaration: false,
         rootAttributes: {
-            class: "sprite-svg",
-            id: "sprite-svg",
+            class: 'sprite-svg',
+            id: 'sprite-svg',
         },
     },
     mode: {
         css: {
-            dest: ".",
-            sprite: "sprite-svg.svg",
-            layout: "diagonal",
+            dest: '.',
+            sprite: 'sprite-svg.svg',
+            layout: 'diagonal',
             bust: false,
             render: {
                 css: false,
@@ -63,152 +65,146 @@ var configSVG = {
         },
         symbol: true,
     },
-};
+}
 
-gulp.task("docker-compose", function () {
-    "use strict";
-    return gulp
-        .src("docker-compose.yml")
-        .pipe(replace("wae", config.theme))
-        .pipe(rename("docker-compose.yml"))
-        .pipe(gulp.dest("./"));
-});
+function dockerCompose() {
+    'use strict'
+    return src('docker-compose.yml')
+        .pipe(replace('wae', config.theme))
+        .pipe(rename('docker-compose.yml'))
+        .pipe(dest('./'))
+}
 
-// Clean
-gulp.task("clean", function () {
-    "use strict";
-    return del(__dirname + "/wp-content/themes/" + config.theme);
-});
+function copy() {
+    const normal = src('src/**/*.{php,jpg,jpeg,png,svg,css}').pipe(
+        dest(__dirname + '/wp-content/themes/' + config.theme)
+    )
 
-// Copy
-gulp.task("copy", function () {
-    var normal = gulp
-            .src("src/**/*.{php,jpg,jpeg,png,svg,css}")
-            .pipe(gulp.dest(__dirname + "/wp-content/themes/" + config.theme)),
-        frameworks = gulp
-            .src("src/frameworks/**/*.{php,jpg,jpeg,png,svg,css,js}")
-            .pipe(
-                gulp.dest(
-                    __dirname +
-                        "/wp-content/themes/" +
-                        config.theme +
-                        "/frameworks"
-                )
-            );
+    const frameworks = src('src/frameworks/**/*.{php,jpg,jpeg,png,svg,css,js}').pipe(
+        dest(__dirname + '/wp-content/themes/' + config.theme + '/frameworks')
+    )
 
-    return merge(normal, frameworks);
-});
+    const vendor = src(config.vendor.in + '/**/*').pipe(dest(config.vendor.out))
+
+    return merge(normal, frameworks, vendor)
+}
 
 // Styles
-gulp.task("styles", function () {
-    "use strict";
-    var vendorFiles = gulp.src([
+function styles() {
+    const vendorFiles = src([
         // 'bower_components/bootstrap/dist/css/bootstrap.min.css',
         // 'bower_components/owl/owl-carousel/owl.carousel.css'
-        "node_modules/normalize.css/normalize.css",
-    ]);
-    var processors = [autoprefixer, pxtorem];
+        'node_modules/normalize.css/normalize.css',
+    ])
 
-    var appFiles = gulp
-        .src([config.style.in + "/app.styl"])
+    return src([config.style.in + '/app.styl'])
+        .pipe(sourcemaps.init())
         .pipe(
             stylus({
-                "include css": true,
+                'include css': true,
+                use: [autoprefixer('iOS >= 7', 'last 1 Chrome version')],
+                compress: true,
                 linenos: true,
-            }).on("error", function (err) {
-                console.log(err);
-                this.emit("end");
+                import: __dirname + '/src/assets/css/app.styl',
             })
         )
-        .pipe(postcss(processors));
-
-    return es
-        .concat(vendorFiles, appFiles)
-        .pipe(sourcemaps.init())
-        .pipe(concat("app.css"))
+        .pipe(rename('app.css'))
+        .pipe(concat('app.css'))
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest(config.style.out))
-        .pipe(livereload());
-});
+        .pipe(dest(config.style.out))
+        .on('error', function (err) {
+            console.log(err)
+            this.emit('end')
+        })
+}
+function stylesCompress() {
+    const vendorFiles = src([
+        // 'bower_components/bootstrap/dist/css/bootstrap.min.css',
+        // 'bower_components/owl/owl-carousel/owl.carousel.css'
+        'node_modules/normalize.css/normalize.css',
+    ])
+
+    return src([config.style.in + '/app.styl'])
+        .pipe(sourcemaps.init())
+        .pipe(
+            stylus({
+                'include css': true,
+                use: [autoprefixer('iOS >= 7', 'last 1 Chrome version')],
+                linenos: true,
+                import: __dirname + '/src/assets/css/app.styl',
+            })
+        )
+        .pipe(rename('app.min.css'))
+        .pipe(concat('app.min.css'))
+        .pipe(sourcemaps.write())
+        .pipe(dest(config.style.out))
+        .on('error', function (err) {
+            console.log(err)
+            this.emit('end')
+        })
+}
 
 // Images
-gulp.task("images", function () {
-    "use strict";
-    return gulp
-        .src([config.image.in + "/**/*.{jpg,png}"])
+function images() {
+    'use strict'
+    return src([config.image.in + '/**/*.{jpg,png}'])
         .pipe(
             imagemin({
                 optimizationLevel: 5,
             })
         )
-        .pipe(gulp.dest(config.image.out))
-        .pipe(livereload());
-});
+        .pipe(dest(config.image.out))
+}
 
 // SVG Clean
-gulp.task("svg-min", function () {
-    "use strict";
-    gulp.src(config.svg.in + "/*.svg")
+function svgMin() {
+    'use strict'
+    return src(config.svg.in + '/*.svg')
         .pipe(
             svgmin({
                 plugins: [{ removeStyleElement: true }],
             })
         )
-        .pipe(gulp.dest(config.svg.out));
-});
+        .pipe(dest(config.svg.out))
+}
 
 // SVG
-gulp.task("svg", function () {
-    "use strict";
-    return gulp
-        .src(config.svg.in + "/**/*.svg")
+function svg() {
+    'use strict'
+    return src(config.svg.in + '/**/*.svg')
         .pipe(svgSprite(configSVG))
-        .on("error", function (error) {
-            console.log(error);
+        .on('error', function (error) {
+            console.log(error)
         })
         .pipe(rename(configSVG.mode.css.sprite))
-        .pipe(gulp.dest(config.svg.out))
-        .pipe(livereload());
-});
+        .pipe(dest(config.svg.out))
+}
 
 //  Watch
-gulp.task("watch", function () {
-    "use strict";
-    livereload.listen();
-    gulp.watch(config.style.in + "/**/*.styl", ["styles"]);
-    gulp.watch(config.image.in + "/**/*.{jpg,png}").on("change", function (
-        file
-    ) {
-        gulp.src(file.path)
-            .pipe(
-                imagemin({
-                    optimizationLevel: 5,
-                })
-            )
-            .pipe(gulp.dest(config.image.out))
-            .pipe(livereload());
-    });
-    gulp.watch(config.image.in + "/**/*.svg").on("change", function (file) {
-        gulp.src(file.path)
-            .pipe(gulp.dest(config.image.out))
-            .pipe(livereload());
-    });
-    gulp.watch(
+
+exports.styles = styles
+exports.copy = copy
+exports.svg = svg
+//exports.stylesCompress = stylesCompress
+
+exports.init = series(styles, copy, svg /*stylesCompress*/)
+
+exports.default = function () {
+    watch('./src/assets/css/**/*.styl', series(styles))
+    //watch('./src/assets/css/**/*.styl', series(stylesCompress))
+    watch(
         [
-            "src/**/*.{php,jpg,jpeg,png,svg,css}",
-            "src/frameworks/**/*.{php,jpg,jpeg,png,svg,css,js}",
+            'src/**/*.{php,jpg,jpeg,png,svg,css}',
+            'src/frameworks/**/*.{php,jpg,jpeg,png,svg,css,js}',
+            'src/vendor/**/*',
+            '!node_modules',
+            '!src/vendor/composer',
         ],
-        ["copy"]
-    );
-    gulp.watch(config.svg.in + "/**/*.svg", ["svg"]);
-});
+        series(copy)
+    )
+
+    watch([config.svg.in + '/**/*.svg'], series(svg))
+}
 
 // Default
-gulp.task("default", [
-    "docker-compose",
-    "clean",
-    "copy",
-    "styles",
-    "images",
-    "svg",
-]);
+//gulp.task('default', ['docker-compose', 'clean', 'copy', 'styles', 'images', 'svg'])
