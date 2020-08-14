@@ -1,16 +1,12 @@
 const { src, dest, watch, series } = require('gulp')
-var gulp = require('gulp'),
-    imagemin = require('gulp-imagemin'),
+var imagemin = require('gulp-imagemin'),
     svgSprite = require('gulp-svg-sprite'),
     svgmin = require('gulp-svgmin'),
     stylus = require('gulp-stylus'),
-    es = require('event-stream'),
     concat = require('gulp-concat'),
     rename = require('gulp-rename'),
     sourcemaps = require('gulp-sourcemaps'),
-    postcss = require('gulp-postcss'),
     autoprefixer = require('autoprefixer-stylus'),
-    pxtorem = require('postcss-pxtorem'),
     replace = require('gulp-replace'),
     merge = require('merge-stream')
 
@@ -91,11 +87,7 @@ function copy() {
 
 // Styles
 function styles() {
-    const vendorFiles = src([
-        // 'bower_components/bootstrap/dist/css/bootstrap.min.css',
-        // 'bower_components/owl/owl-carousel/owl.carousel.css'
-        'node_modules/normalize.css/normalize.css',
-    ])
+    const vendorFiles = src(['node_modules/normalize.css/normalize.css'])
 
     return src([config.style.in + '/app.styl'])
         .pipe(sourcemaps.init())
@@ -185,12 +177,15 @@ function svg() {
 exports.styles = styles
 exports.copy = copy
 exports.svg = svg
+exports.images = images
+exports.dockerCompose = dockerCompose
 //exports.stylesCompress = stylesCompress
 
-exports.init = series(styles, copy, svg /*stylesCompress*/)
+exports.init = series(styles, copy, svg, images, dockerCompose /*stylesCompress*/)
 
 exports.default = function () {
     watch('./src/assets/css/**/*.styl', series(styles))
+    watch(config.image.in + '/**/*.{jpg,png}', series(images))
     //watch('./src/assets/css/**/*.styl', series(stylesCompress))
     watch(
         [
