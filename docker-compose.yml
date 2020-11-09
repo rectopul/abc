@@ -1,4 +1,4 @@
-version: "2"
+version: '2'
 services:
     db:
         image: mysql:5.7
@@ -7,7 +7,7 @@ services:
         expose:
             - 3306
         networks:
-            - auaha
+            - smartux
         environment:
             MYSQL_ROOT_PASSWORD: wordpress
             MYSQL_DATABASE: wordpress
@@ -20,13 +20,16 @@ services:
         image: wordpress:latest
         volumes:
             - ./wp-content:/var/www/html/wp-content
+            - ./config/.htaccess:/var/www/html/.htaccess
         expose:
             - 80
+        ports:
+            - 8003:80
         networks:
-            - auaha
+            - smartux
             - nginx-proxy
         environment:
-            VIRTUAL_HOST: auaha.localhost
+            VIRTUAL_HOST: localhost
             WORDPRESS_DB_HOST: db:3306
             WORDPRESS_DB_USER: wordpress
             WORDPRESS_DB_PASSWORD: wordpress
@@ -38,10 +41,10 @@ services:
         expose:
             - 80
         networks:
-            - auaha
+            - smartux
             - nginx-proxy
         environment:
-            VIRTUAL_HOST: phpmyadmin.auaha.localhost
+            VIRTUAL_HOST: phpmyadmin.smartux.localhost
             PMA_USERNAME: wordpress
             PMA_PASSWORD: wordpress
             PMA_HOSTS: db
@@ -51,7 +54,7 @@ volumes:
     db_data:
 
 networks:
-    auaha:
+    smartux:
     nginx-proxy:
         external:
             name: proxy_default

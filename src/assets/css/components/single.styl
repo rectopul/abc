@@ -1,0 +1,165 @@
+body
+    &.single-product
+        > .elementor-location-header
+            background-image url('../images/colorstripe.png')
+            background-repeat no-repeat
+            background-size 100% 3px
+            background-position top left
+            background-color transparent
+
+            .elementor-section-height-default
+                &:first-child
+                    background-color transparent !important
+                    height 3px
+        .elementor-column-gap-default>.elementor-row>.elementor-column>.elementor-element-populated
+            @media (min-width: 1024px)
+                padding 0
+
+    //Aditional information
+    &.woocommerce 
+        table.shop_attributes
+            &, tr, td
+                border 0
+            th
+                font-weight bold
+                font-size 1.5rem
+                line-height: 1.6
+                font-family "PT Sans","HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif
+                color #222
+                width 40%
+                text-align left
+                border 0
+            p
+                font-size: 1.5rem;
+                line-height: 1.6;
+                font-weight: 400;
+                font-family: "PT Sans","HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif;
+                color: #222;
+                font-style normal
+            th,
+            p
+                padding 10px
+                border 0
+    .product
+        font-family "PT Sans","HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif
+        color #222
+        .elementor-column-gap-default>.elementor-row>.elementor-column>.elementor-element-populated
+            padding-top 0
+            padding-bottom 0
+
+        &_tabs
+            margin 20px 0
+            box-shadow: 0 -10px 70px rgba(0,0,0,.05), 0 1px 2px rgba(0,0,0,.08) !important
+
+            > .elementor-container
+                margin 20px auto
+                height 48px
+                display flex
+                align-items center
+                justify-content center
+            img
+                max-width 75px
+            ul
+                display flex
+                list-style none
+                margin-left auto
+                justify-content flex-end
+                li
+                    padding 0 20px
+
+        &_title
+            h1
+                font-size 3rem
+                max-width 700px
+                margin 30px auto
+                font-weight 600
+                width 90%
+                @media (min-width: 1024px)
+                    font-size 4rem
+                    width 100%
+        &_description
+            width 90% !important
+            margin 0 auto
+            @media (min-width: 1024px)
+                width 100% !important
+            h4
+                line-height 1.6
+                font-weight 400
+                text-align center
+                font-size 1.8rem
+                font-family "PT Sans","HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif
+
+        &_separator
+            margin 100px 0 0
+
+        &_variations
+            text-align center
+            @media (min-width: 1024px)
+                text-align left
+            h3
+                color #999
+                font-size 2.0rem
+                font-weight 300
+                text-align center
+                @media (min-width: 1024px)
+                    text-align left
+
+            h2
+                font-size 3.2rem
+                font-weight 600
+
+            &_images
+               
+                @media (min-width: 1024px)
+                     margin-left 4%
+
+        &_functions
+            max-width 1200px
+            margin 0 auto
+
+            .wrapper
+                display flex
+                flex-wrap wrap
+
+                h2, h3
+                    flex 0 0 100%
+                    color #999
+                    font-size 2.0rem
+                    font-weight 300
+                    text-align center
+                    @media (min-width: 1024px)
+                        text-align left
+
+                h2
+                    margin 0 0 30px
+                    font-size 3.2rem
+                    color #222222
+                    font-weight 600
+
+                .two.columns
+                    flex 0 0 100%
+                    padding 20px 5%
+                    position relative
+                    @media (min-width: 1024px)
+                        flex 0 0 33.333333333%
+                        padding 20px 1%
+                    &, > div
+                        display flex
+                        align-items center
+                        color #555
+                        font-weight 400
+                        font-size 1.5rem
+                        img
+                            width 70px
+                            margin-right 20px
+                            max-width: 70px;
+                            float: left;
+                    &:after
+                        position absolute
+                        content ''
+                        display flex
+                        width calc(100% - 20px)
+                        height 1px
+                        border-bottom 1px solid #e0e0de
+                        left 10px
+                        bottom 0

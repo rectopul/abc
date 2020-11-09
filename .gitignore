@@ -3,6 +3,7 @@
 .vscode
 node_modules
 npm-debug.log
+wp-content/uploads
 wp-content/update
 wp-content/index.php
 wp-content/plugins/akismet/
